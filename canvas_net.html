@@ -4,53 +4,45 @@
     <meta charset="utf-8" />
 
     <style type="text/css">
-	
+		
+		html, body {
+			width:100%;
+			height:100%;
+			margin:0;
+			padding:0;
+			
+		}
 		body {
 			font-family:Arial, Helvetica, sans-serif;
 		}
-		.buttons{
-			display:none;
-		}
-		#arrow_Container {
-			top: 0;
-			left:0;
-			position: absolute;
-			width:100%;
-			height:100%;
-			/*
-			overflow: hidden;
-			display:none;
-			z-index:-1;
-			*/
-			border:#f00 1px solid;
-		}
 		#arrow_Canvas {
-			border:0 none;
+			left:0;
+			top: 0;
+			border:#f00 1px solid;
+			display:block;
+			position:absolute;
 		}
     </style>  
     <script type="text/javascript">
 	
 //	on page load
 
-var contArrow, canvArrow;
+var canvArrow;
+
+var lines = [];
 
 function page_load() {
 
 	//	define
 	
-	btnStart = document.getElementById('start');
+	//btnStart = document.getElementById('start');
 	
-	contArrow = document.getElementById('arrow_Container');
 	canvArrow = document.getElementById("arrow_Canvas");
 	
 	//	do
 	
-	
-	//	handle load and save
-	
-	btnStart.addEventListener("click", function() {
-		//dlg.draw_arrow();
-	});
+	resizeCanvas();
+
 	
 
 }
@@ -60,105 +52,26 @@ var dlg = {
 	
 	draw_arrow: function(w,h){		//console.log('hi');
 
-							contArrow.classList.remove('canv-hor');
-							contArrow.classList.remove('canv-vert');
-							contArrow.classList.remove('canv-hor-vert');
 
-
-				if(w < window.innerWidth * 0.5 && h < window.innerHeight * 0.5){
-							contArrow.classList.add('canv-hor-vert');
-				}else{
-			
-							if(w < window.innerWidth * 0.5){
-										contArrow.classList.add('canv-hor');
-							}
-							
-							if(h < window.innerHeight * 0.5){
-										contArrow.classList.add('canv-vert');
-							}
-				}
-
-				if(w < window.innerWidth * 0.5){
-					var l = w;
-					w = window.innerWidth * 0.5 - w;
-				}else{
-					var l = window.innerWidth * 0.5;
-					w -= window.innerWidth * 0.5;
-				}
-				
-				if(h < window.innerHeight * 0.5){
-					var t = h;
-					h = window.innerHeight * 0.5 - h;
-				}else{
-					var t = window.innerHeight * 0.5;
-					h -= window.innerHeight * 0.5;
-				}
-				
-				
-				
-				//var t = window.innerHeight / 2;
-				
-				//w -= l;
-				//h -= t;
-				
-							//contArrow.classList.add((other_hand.getBoundingClientRect().top > this_hand.getBoundingClientRect().top) ? 'canv-hor-vert' : 'canv-hor');
-				
-				//h = (h < 0) ? 0 - h : h;
-				//var w = 600;
-				h += 16;
-				
-				//var form = 's';
-				
-				//var rad = 16;
-				
-				var indent = 16;
-				
-				//	first set up div
-				
-				
-				contArrow.style.left = l + 'px';
-				contArrow.style.top = t + 'px';
-				contArrow.style.width = w + 'px';
-				contArrow.style.height = h + 'px';
-				
-				//contArrow.style.display = 'block';
-				
-				//	now draw the canvas
-				
-				//if(form == 's'){
-					
-					this.draw_s(w,h,indent);	
-		
-				//}else{
-					
-				//	this.draw_u(w,h,rad);	
-		
-				//}				
-		
-	},
-	
-	canv_prefs: function(l,indent){
-		
 		var ctx = canvArrow.getContext("2d");
 			
-			
-			if(l == 2){ctx.setLineDash([120, 24]);}
-			
-			ctx.beginPath();
-			
-			ctx.lineWidth = (l == 0) ? indent * 2 : indent * 2 - 2;
-			
-			ctx.lineWidth = (l == 2) ? 15 : ctx.lineWidth;
-			
-			ctx.strokeStyle = (l != 1) ? '#6698c5' : '#b2cbe2';
-			
-			ctx.strokeStyle = (l == 2) ? '#ff0000' : ctx.strokeStyle;
-			
-			ctx.lineCap = 'round';
-			
-			return [ctx,indent];
-		
-					
+		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
+		ctx.beginPath();
+		ctx.arc(w, h, 12, 0, 2 * Math.PI, false);
+		ctx.fillStyle = '#0f0';
+		ctx.fill();
+		ctx.closePath();
+
+		ctx.beginPath();
+
+		for(var i = 0; i < lines.length; i++){
+			ctx.moveTo(lines[i], 0);
+			ctx.lineTo(lines[i], canvArrow.height);
+		}
+
+		ctx.stroke();
+		ctx.closePath();
+				
 	},
 
 	
@@ -179,7 +92,6 @@ var dlg = {
 		
 		
 		
-		//var ctx = canvArrow.getContext("2d");
 					  
 		
 		// here comes the "play it again sam" - theme
@@ -209,6 +121,23 @@ window.addEventListener('mousemove', function(e){
 	dlg.draw_arrow(e.clientX,e.clientY);
 }, false);
 
+        window.addEventListener('resize', resizeCanvas, false);
+        
+        function resizeCanvas() {
+                canvArrow.width = window.innerWidth;
+                canvArrow.height = window.innerHeight;
+				
+				for(var i = 0; i < canvArrow.width; i+=20){
+					lines.push(i);
+				}
+                
+                /**
+                 * Your drawings need to be inside this function otherwise they will be reset when 
+                 * you resize the browser window and the canvas goes will be cleared.
+                 */
+                //drawStuff(); 
+        }
+		
 
     </script>
 
@@ -218,11 +147,6 @@ window.addEventListener('mousemove', function(e){
 <head> 
    
 <body>
-
-    <h1>Canvas-Experimental</h1>
-    <div class="buttons">
-      <input type="button" id="start" value="start" title="start">
-    </div>
-    <div id="arrow_Container"><canvas id="arrow_Canvas"></canvas></div>
+<canvas id="arrow_Canvas"></canvas>
 </body>
 </html>

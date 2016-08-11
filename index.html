@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<title>David Luginbühl - Abotsi</title>
+<link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+<style type="text/css">
+<!--
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin:0;
+	padding:0;
+}
+
+#content_background
+{
+	background:#496c0c;
+	opacity:1;
+	z-index:1;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+#content
+{	
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:2;
+	overflow:hidden;
+}
+
+#content p,
+#content h2,
+#content span,
+#content a
+{	
+	position:absolute;
+	background:#ccf;
+	z-index:2;
+}
+
+#content img
+{
+	position:absolute;
+	width:200vmax;
+	height:auto;
+	left:0;
+	top:0;
+	z-index:1;
+}
+
+#code_display
+{
+	font-family: 'Special Elite';
+	color:#0C0;
+	line-height:1.4;
+	
+	background:#000; position:absolute; width:100%; height:100%;
+	z-index:0;
+}
+
+canvas{
+    border: 1px black solid;
+}
+#textCanvas{
+	background:#0f0;
+	/*
+    display: none;
+	*/
+}
+a{
+	cursor:pointer;
+}
+-->
+</style>
+<script type="text/javascript" charset="utf-8">
+/*
+
+document.getElementById("text_ih").innerHTML = this.currentUser.viewData;
+$(".members-wrapper").append(this.currentUser.viewData);
+
+var a = {};
+
+a.text = "hallo ";
+
+a.zahl = 20;
+
+a.foo = function(z){
+	var r = this.zahl + z;
+	return this.text + r;
+	};
+
+document.write(a.foo(5));
+
+*/
+
+
+function duplicate(t){
+	
+
+	machine.foo(t.innerHTML).displayIt("text_ih");
+
+	//document.getElementById("text_ih").innerHTML = userController.findUser(t.innerHTML).formatName().createLayout().displayUserwithColor("#0f0").currentUser.viewData;
+	
+}
+
+function ucdu(t){
+	
+
+	userController.findUser(t.innerHTML).formatName().createLayout().displayUser("text_ih");
+
+	//document.getElementById("text_ih").innerHTML = userController.findUser(t.innerHTML).formatName().createLayout().displayUserwithColor("#0f0").currentUser.viewData;
+	
+}
+
+var tCtx;
+
+var cd;
+
+window.onload = function(){
+
+	//	define
+	
+	cd = document.getElementById('code_display');
+	
+	content = document.getElementById('content');
+	
+	cbg = document.getElementById('content_background');
+	
+	
+	//	do	
+	
+
+
+};
+
+
+function see_ucdu(f){
+	
+    var r = '';
+    for (var k in f) {
+        if (f.hasOwnProperty(k)){
+            r = r + k.toString() + '<br/><br/>';
+            r = r + f[k].toString() + '<br/><br/>';
+		}
+    }
+	
+	cd.innerHTML = 
+	
+	'<h1>So sieht die eben ausgeführte Funktion aus:</h1><br/>' +
+	
+	r.replace(/<h2>/g, '').replace(/<\/h2>/g, '').replace(/<p>/g, '').replace(/<\/p>/g, '');
+
+	enlarge(cd);
+
+}
+
+function clear_ucdu(){
+	
+	shrink(cd);
+
+}
+
+var dcId;
+
+var cd_size = 2;
+
+function shrink(t){
+	
+	clearInterval(dcId);
+	
+	dcId = setInterval(function(){
+				cd_size++;
+				//t.style.borderWidth = cd_size + 'px';
+				cbg.style.opacity = cd_size / 100;
+				
+				if(cd_size > 100){
+					
+					clearInterval(dcId);
+					cd_size = 100;
+					
+					t.innerHTML = ''
+				
+				}
+				
+									}, 10);
+	
+
+}
+
+function enlarge(t){
+	
+window.addEventListener("mousemove", function(e) {
+	document.getElementById("kreis").style.left = 'calc(' + e.clientX + 'px - 100vmax)';
+	document.getElementById("kreis").style.top = 'calc(' + e.clientY + 'px - 100vmax)';
+    //myFunction(event);
+});
+	
+
+/*
+function myFunction(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+    var coor = "Coordinates: (" + x + "," + y + ")";
+    document.getElementById("demo").innerHTML = coor;
+}
+*/
+	
+	clearInterval(dcId);
+	
+	dcId = setInterval(function(){
+				cd_size--;
+				//t.style.borderWidth = cd_size + 'px';
+				cbg.style.opacity = cd_size / 100;
+				
+				if(cd_size < 20){
+					
+					clearInterval(dcId);
+					cd_size = 20;
+				
+				}
+				
+									}, 10);
+	
+
+}
+
+var usersData = [
+	    {firstName: "tommy", lastName: "MalCom", email: "test@test.com", id: 102, workDomain: "Webdesign", text: "Ich erstelle Webseiten die in Design, Benuzerfreundlichkeit und technischer Ausbaufähigkeit dem aktuellen \"State of the Art\" entsprechen."},
+	    {firstName: "Peter", lastName: "breCht", email: "test2@test2.com", id: 103, workDomain: "Keramik"},
+	    {firstName: "RoHan", lastName: "sahu", email: "test3@test3.com", id: 104, workDomain: "Events"}
+	];
+
+
+function titleCaseName(str) {
+	return str.replace(/\w\S*/g, function (txt) {
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	});
+}
+
+
+// Our object with the chainable methods
+	
+var userController = {
+	
+	currentUser: "",
+
+	findUser: function (a_ih) {
+		var arrayLength = usersData.length, i;
+		for (i = arrayLength - 1; i >= 0; i--) {
+			if (usersData[i].workDomain === a_ih) {
+				this.currentUser = usersData[i];
+				break;
+			}
+		}
+		
+		return this;
+	},
+	
+	formatName: function () {
+		if (this.currentUser) {
+			this.currentUser.fullName = titleCaseName(this.currentUser.firstName) + " " + titleCaseName(this.currentUser.lastName);
+		}
+		
+		return this;
+		
+	},
+	
+	createLayout: function () {
+		if (this.currentUser) {
+			this.currentUser.viewData = "<h2>Member: " + this.currentUser.fullName + "</h2>" + "<p>ID: " + this.currentUser.id + "</p>" + "<p>Email: " + this.currentUser.email + "</p>" + "<p>Text: " + this.currentUser.text + "</p>";
+		}
+		
+		return this;
+		
+	},
+	
+	displayUser: function (el) {
+	
+		if (!this.currentUser) return;
+		
+		document.getElementById(el).innerHTML = this.currentUser.viewData;
+		
+		see_ucdu(this);
+	
+	},
+	
+	displayUserwithColor: function (c) {
+	
+		if (!this.currentUser) return;
+		
+		document.getElementById("text_ih").style.background = c;
+		
+		return this;
+	
+	}
+	
+};
+
+
+var machine = {
+	zahl: 2,
+	foo: function(v){this.result = this.zahl * v; return this;},
+	displayIt: function(el){
+		document.getElementById(el).innerHTML = '<span>= ' + this.result + "</span>";
+		see_ucdu(this);
+	}
+};
+
+</script>
+</head>
+
+<body>
+
+<div id="content">
+
+    <a onClick="duplicate(this)" onMouseOut="clear_ucdu()">23</a><span> x 2</span>
+    
+    <br/>
+    
+    <br/>
+    
+    <a onClick="ucdu(this)" onMouseOut="">Webdesign</a>
+    
+    <br/>
+    
+    <br/>
+    
+    <a onClick="ucdu(this)" onMouseOut="clear_ucdu()">Keramik</a>
+    
+    <br/>
+    
+    <br/>
+    
+    <a onClick="ucdu(this)" onMouseOut="clear_ucdu()">Events</a>
+    
+    <div id="text_ih"></div>
+    
+	<img src="images/bg.png" id="kreis">
+    
+
+</div>
+
+<div id="content_background">
+</div>
+
+<div id="code_display"></div>
+
+</body>
+</html>

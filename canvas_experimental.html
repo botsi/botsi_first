@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+	
+		body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		.buttons{
+			display:none;
+		}
+		#arrow_Container {
+			top: 0;
+			left:0;
+			position: absolute;
+			/*
+			width:100%;
+			height:100%;
+			overflow: hidden;
+			display:none;
+			z-index:-1;
+			border:#f00 1px solid;
+			*/
+		}
+		#arrow_Canvas {
+			border:0 none;
+		}
+.canv-vert {
+        -moz-transform: scaleY(-1);
+        -o-transform: scaleY(-1);
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+        filter: FlipV;
+        -ms-filter: "FlipV";
+}							
+.canv-hor {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+.canv-hor-vert {
+        -moz-transform: scale(-1, -1);
+        -o-transform: scale(-1, -1);
+        -webkit-transform: scale(-1, -1);
+        transform: scale(-1, -1);
+}
+    </style>  
+    <script type="text/javascript">
+	
+//	on page load
+
+var contArrow, canvArrow;
+
+function page_load() {
+
+	//	define
+	
+	btnStart = document.getElementById('start');
+	
+	contArrow = document.getElementById('arrow_Container');
+	canvArrow = document.getElementById("arrow_Canvas");
+	
+	//	do
+	
+	
+	//	handle load and save
+	
+	btnStart.addEventListener("click", function() {
+		//dlg.draw_arrow();
+	});
+	
+
+}
+
+var dlg = {
+	
+	
+	draw_arrow: function(w,h){		//console.log('hi');
+
+							contArrow.classList.remove('canv-hor');
+							contArrow.classList.remove('canv-vert');
+							contArrow.classList.remove('canv-hor-vert');
+
+
+				if(w < window.innerWidth * 0.5 && h < window.innerHeight * 0.5){
+							contArrow.classList.add('canv-hor-vert');
+				}else{
+			
+							if(w < window.innerWidth * 0.5){
+										contArrow.classList.add('canv-hor');
+							}
+							
+							if(h < window.innerHeight * 0.5){
+										contArrow.classList.add('canv-vert');
+							}
+				}
+
+				if(w < window.innerWidth * 0.5){
+					var l = w;
+					w = window.innerWidth * 0.5 - w;
+				}else{
+					var l = window.innerWidth * 0.5;
+					w -= window.innerWidth * 0.5;
+				}
+				
+				if(h < window.innerHeight * 0.5){
+					var t = h;
+					h = window.innerHeight * 0.5 - h;
+				}else{
+					var t = window.innerHeight * 0.5;
+					h -= window.innerHeight * 0.5;
+				}
+				
+				
+				
+				//var t = window.innerHeight / 2;
+				
+				//w -= l;
+				//h -= t;
+				
+							//contArrow.classList.add((other_hand.getBoundingClientRect().top > this_hand.getBoundingClientRect().top) ? 'canv-hor-vert' : 'canv-hor');
+				
+				//h = (h < 0) ? 0 - h : h;
+				//var w = 600;
+				h += 16;
+				
+				//var form = 's';
+				
+				//var rad = 16;
+				
+				var indent = 16;
+				
+				//	first set up div
+				
+				
+				contArrow.style.left = l + 'px';
+				contArrow.style.top = t + 'px';
+				contArrow.style.width = w + 'px';
+				contArrow.style.height = h + 'px';
+				
+				//contArrow.style.display = 'block';
+				
+				//	now draw the canvas
+				
+				//if(form == 's'){
+					
+					this.draw_s(w,h,indent);	
+		
+				//}else{
+					
+				//	this.draw_u(w,h,rad);	
+		
+				//}				
+		
+	},
+	
+	canv_prefs: function(l,indent){
+		
+		var ctx = canvArrow.getContext("2d");
+			
+			
+			if(l == 2){ctx.setLineDash([120, 24]);}
+			
+			ctx.beginPath();
+			
+			ctx.lineWidth = (l == 0) ? indent * 2 : indent * 2 - 2;
+			
+			ctx.lineWidth = (l == 2) ? 15 : ctx.lineWidth;
+			
+			ctx.strokeStyle = (l != 1) ? '#6698c5' : '#b2cbe2';
+			
+			ctx.strokeStyle = (l == 2) ? '#ff0000' : ctx.strokeStyle;
+			
+			ctx.lineCap = 'round';
+			
+			return [ctx,indent];
+		
+					
+	},
+
+/*	
+	draw_u: function(w,h,rad){		
+		
+					
+		canvArrow.width = w;
+		canvArrow.height = h;
+					  											
+		
+		// here comes the "play it again sam" - theme
+		
+		for (var l = 0; l < 3; l++){
+			
+			var ctx = this.canv_prefs(l);
+			
+			ctx[0].moveTo(				ctx[1], ctx[1]);
+			ctx[0].lineTo(				w+ctx[1]-rad, ctx[1]);
+			
+			ctx[0].bezierCurveTo(				w-ctx[1], ctx[1] , 
+											w-ctx[1], h-ctx[1], 
+									w+ctx[1]-rad, h-ctx[1]);
+			
+			ctx[0].stroke();
+				
+		}
+		
+
+		
+		
+					
+	},
+
+*/
+	
+	draw_s: function(w,h,indent){
+					
+		canvArrow.width = w;
+		canvArrow.height = h;
+		
+		
+		var fak = 7.5;
+		
+		var mid1_x = (canvArrow.width / 10) * fak;
+		var mid1_y = (canvArrow.height / 10) * fak;
+		
+		
+		var mid2_x = (canvArrow.width / 20) * fak;
+		var mid2_y = (canvArrow.height / 20) * fak;
+		
+		
+		
+		//var ctx = canvArrow.getContext("2d");
+					  
+		
+		// here comes the "play it again sam" - theme
+		
+		for (var l = 0; l < 3; l++){
+			
+			var ctx = this.canv_prefs(l,indent);
+
+			
+			ctx[0].moveTo(				ctx[1], ctx[1]);
+			ctx[0].bezierCurveTo(				mid1_x, ctx[1] , 
+											mid2_x, canvArrow.height-ctx[1], 
+									canvArrow.width-ctx[1], canvArrow.height-ctx[1]);
+			
+			ctx[0].stroke();
+				
+		}
+		
+	}
+
+
+	
+};
+
+document.addEventListener('DOMContentLoaded', page_load, false);
+window.addEventListener('mousemove', function(e){
+	dlg.draw_arrow(e.clientX,e.clientY);
+}, false);
+
+
+    </script>
+
+      
+    
+       
+<head> 
+   
+<body>
+
+    <h1>Canvas-Experimental</h1>
+    <div class="buttons">
+      <input type="button" id="start" value="start" title="start">
+    </div>
+    <div id="arrow_Container"><canvas id="arrow_Canvas"></canvas></div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+		
+		html, body {
+			width:100%;
+			height:100%;
+			margin:0;
+			padding:0;
+			background:#ccc;
+			/*
+			background: rgba(0, 255, 0, 1) url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+			*/
+		}
+		body {
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		#arrow_Canvas {
+			left:0;
+			top: 0;
+			border:0 none;
+			display:block;
+			position:absolute;
+		}
+    </style>  
+    <script type="text/javascript">
+	
+//	on page load
+
+var canvArrow, space, pneuId;
+
+var lines = [];
+
+function page_load() {
+
+	//	define
+	
+	//btnStart = document.getElementById('start');
+	
+	canvArrow = document.getElementById("arrow_Canvas");
+	
+	//	do
+	
+	resizeCanvas();
+
+	
+
+}
+
+var dlg = {
+	
+	
+	draw_all: function(w,h){
+
+		var ctx = canvArrow.getContext("2d");
+			
+		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
+
+		this.draw_bullet(w,h,ctx);
+				
+	},
+	
+	draw_bullet: function(w,h,ctx){
+			
+		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
+
+		ctx.beginPath();
+		ctx.arc(w, h, 12, 0, 2 * Math.PI, false);
+		ctx.fillStyle = '#0f0';
+		ctx.fill();
+		ctx.closePath();
+
+		this.draw_center_x(w,h,ctx);
+				
+	},
+	
+		draw_center_x: function(w,h,ctx){
+		
+		ctx.globalCompositeOperation='source-over';
+	
+		ctx.beginPath();
+
+		ctx.lineWidth = 2;
+		//ctx.strokeStyle = '#f33';
+		ctx.fillStyle = "#0ff";
+		
+		var lines = [w - 25, w + 25];
+
+			for(var i = 0; i < lines.length; i++){
+				
+				var x_shift = lines[i];
+					
+					var c = w - x_shift;
+					
+					if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
+				
+					if(i == 1){
+					
+					ctx.moveTo(x_shift - 50, h - 300);
+					
+					ctx.lineTo(x_shift, h - 300);
+					
+					}else{
+					
+					ctx.moveTo(x_shift, h - 300);
+					
+					}
+				
+					ctx.bezierCurveTo(
+											x_shift, h - 165, 
+											x_shift + c, h - 135, 
+											x_shift + c, h
+										);
+				
+					ctx.bezierCurveTo(
+											x_shift + c, h + 135, 
+											x_shift, h + 165, 
+											x_shift, h + 300
+										);
+					
+					if(i == 0){
+					
+					ctx.lineTo(x_shift + 50, h + 300);
+					
+					}
+				
+			}
+			/*	
+			ctx.moveTo(x_shift - 50, h - 300);
+		
+			ctx.moveTo(x_shift - 50, h + 300);
+			ctx.lineTo(x_shift, h + 300);
+			*/
+			
+		//ctx.stroke();
+		ctx.fill();
+
+		ctx.closePath();
+		
+		ctx.globalCompositeOperation='xor';
+		
+		this.draw_center_y(w,h,ctx);
+				
+	},
+	
+	draw_center_y: function(w,h,ctx){
+		
+		ctx.beginPath();
+
+		ctx.lineWidth = 2;
+		//ctx.strokeStyle = '#f33';
+		ctx.fillStyle = "#f0f";
+		
+		var lines = [h - 25, h + 25];
+
+			for(var i = 0; i < lines.length; i++){
+				
+				var y_shift = lines[i];
+					
+					var c = h - y_shift;
+					
+					if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
+				
+				
+					if(i == 1){
+					
+					ctx.moveTo(w - 300, y_shift - 50);
+					
+					ctx.lineTo(w - 300, y_shift);
+					
+					}else{
+					
+					ctx.moveTo(w - 300, y_shift);
+					
+					}
+				
+					ctx.bezierCurveTo(
+											w - 165, y_shift, 
+											w - 135, y_shift + c, 
+											w, y_shift + c
+										);
+				
+					ctx.bezierCurveTo(
+											w + 135, y_shift + c, 
+											w + 165, y_shift, 
+											w + 300, y_shift
+										);
+					
+					if(i == 0){
+					
+					ctx.lineTo(w + 300, y_shift + 50);
+					
+					}
+				
+			}
+			
+		//ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+				
+	},
+	
+	
+	auto_close: function(w,h){
+		var param = 0;			
+		pneuId = setInterval(dlg.draw_all(w,h,param), 100);
+		
+	}
+	
+};
+
+document.addEventListener('DOMContentLoaded', page_load, false);
+window.addEventListener('mousemove', function(e){
+	dlg.draw_all(e.clientX,e.clientY);
+}, false);
+
+        window.addEventListener('resize', resizeCanvas, false);
+        
+        function resizeCanvas() {
+                canvArrow.width = window.innerWidth;
+                canvArrow.height = window.innerHeight;
+				
+				
+				space = 100;
+                
+                /**
+                 * Your drawings need to be inside this function otherwise they will be reset when 
+                 * you resize the browser window and the canvas goes will be cleared.
+                 */
+                //drawStuff(); 
+        }
+		
+
+    </script>
+
+      
+    
+       
+<head> 
+   
+<body>
+<canvas id="arrow_Canvas"></canvas>
+</body>
+</html>

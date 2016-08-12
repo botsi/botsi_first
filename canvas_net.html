@@ -10,8 +10,8 @@
 			height:100%;
 			margin:0;
 			padding:0;
-			background:#ccc;
 			/*
+			background:#ccc;
 			background: rgba(0, 255, 0, 1) url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
 			*/
 		}
@@ -30,9 +30,10 @@
 	
 //	on page load
 
-var canvArrow, space, pneuId;
+var canvArrow, space, cp, pneuId;
 
-var lines = [];
+var lines_x = [];
+var lines_y = [];
 
 function page_load() {
 
@@ -59,12 +60,13 @@ var dlg = {
 			
 		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
 
-		this.draw_bullet(w,h,ctx);
+		this.draw_center_x(w,h,ctx);
 				
 	},
 	
 	draw_bullet: function(w,h,ctx){
-			
+		
+		
 		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
 
 		ctx.beginPath();
@@ -73,11 +75,161 @@ var dlg = {
 		ctx.fill();
 		ctx.closePath();
 
-		this.draw_lines(w,h,ctx);
+		this.draw_lines_x(w,h,ctx);
+				
+	},
+		draw_center_x: function(w,h,ctx){
+		
+		ctx.globalCompositeOperation='source-over';
+	
+		ctx.beginPath();
+
+		//ctx.lineWidth = 2;
+		//ctx.strokeStyle = '#f33';
+		ctx.fillStyle = "#ccc";
+		
+		//var lines = [w - 50, w + 50];
+
+			for(var i = 0; i < 2; i++){
+				
+				var x_shift = (i == 0) ? w - 50 : w + 50;	//	ex lines
+					
+				var c = this.giveMeC(x_shift,w,canvArrow.width);
+				
+					if(i == 1){
+					
+						ctx.moveTo(x_shift - 100, 0);
+						
+						ctx.lineTo(x_shift, 0);
+					
+					}else{
+					
+						ctx.moveTo(x_shift, 0);
+					
+					}
+						
+						ctx.lineTo(x_shift, h - 300);
+				
+					ctx.bezierCurveTo(
+											x_shift, h - 165, 
+											x_shift + c, h - 135, 
+											x_shift + c, h
+										);
+				
+					ctx.bezierCurveTo(
+											x_shift + c, h + 135, 
+											x_shift, h + 165, 
+											x_shift, h + 300
+										);
+				
+					ctx.lineTo(x_shift, canvArrow.height);
+					
+					if(i == 0){
+					
+						ctx.lineTo(x_shift + 100, canvArrow.height);
+					
+					}
+				
+			}
+			/*	
+			ctx.moveTo(x_shift - 50, h - 300);
+		
+			ctx.moveTo(x_shift - 50, h + 300);
+			ctx.lineTo(x_shift, h + 300);
+			*/
+			
+		//ctx.stroke();
+		ctx.fill();
+
+		ctx.closePath();
+		
+		ctx.globalCompositeOperation='xor';
+		
+		this.draw_center_y(w,h,ctx);
 				
 	},
 	
-	draw_lines: function(w,h,ctx){
+	draw_center_y: function(w,h,ctx){
+		
+		ctx.beginPath();
+
+		//ctx.lineWidth = 2;
+		//ctx.strokeStyle = '#f33';
+		//ctx.fillStyle = "#f0f";
+		/*
+		var hh = parseInt(h / 50);
+		
+		var lines = [lines_y[hh], lines_y[hh+1]];
+
+
+
+
+			
+		
+		var lines = [];
+		
+		lines.push(lines_y[hh]);
+		
+		lines.push(lines_y[hh+1]);
+
+
+
+
+*/
+//		var lines = [h - 25, h + 25];
+		var hh = parseInt((h-1) / 50);
+
+			for(var i = 0; i < 2; i++){
+				
+				//var y_shift = lines[i];
+				var y_shift = lines_y[hh+i];	//	ex lines
+					
+			var c = this.giveMeC(y_shift,h,canvArrow.height);
+				
+				
+					if(i == 1){
+					
+					ctx.moveTo(w - 300, y_shift - 50);
+					
+					ctx.lineTo(w - 300, y_shift);
+					
+					}else{
+					
+					ctx.moveTo(w - 300, y_shift);
+					
+					}
+				
+					ctx.bezierCurveTo(
+											w - 165, y_shift, 
+											w - 135, y_shift + c, 
+											w, y_shift + c
+										);
+				
+					ctx.bezierCurveTo(
+											w + 135, y_shift + c, 
+											w + 165, y_shift, 
+											w + 300, y_shift
+										);
+					
+					if(i == 0){
+					
+					ctx.lineTo(w + 300, y_shift + 50);
+					
+					}
+				
+			}
+			
+		//ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+		
+		ctx.globalCompositeOperation='source-over';
+		
+		this.draw_lines_x(w,h,ctx);
+				
+	},
+	
+	draw_lines_x: function(w,h,ctx){
 
 		for(var l = 0; l < 2; l++){
 		
@@ -86,24 +238,28 @@ var dlg = {
 		ctx.lineWidth = (l == 0) ? 50 : 2;
 		ctx.strokeStyle = (l == 0) ? '#ccc' : '#f33';
 
-			for(var i = 0; i < lines.length; i++){
+			for(var i = 0; i < lines_x.length; i++){
 				
-				var x_shift = lines[i];
+				var x_shift = lines_x[i];
+				
+				var c = 0;
+				if(x_shift < w + cp * 0.5 && x_shift > w - cp * 0.5){
+					c = this.giveMeC(x_shift,w,canvArrow.width);
+				}
+			
 				if(l == 0){
 					if(x_shift < w){
-						x_shift = lines[i] - 25;
+						x_shift = lines_x[i] - 25;
 					}else{
-						x_shift = lines[i] + 25;
+						x_shift = lines_x[i] + 25;
 					}
 				}
 				
 				ctx.moveTo(x_shift, 0);
 				
-				if(x_shift > w - space-50 && x_shift < w + space+50){
+				//if(x_shift > w - space-50 && x_shift < w + space+50){
 					
-					var c = w - x_shift;
 					
-					if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
 				
 					ctx.lineTo(x_shift, h - 300);
 				
@@ -119,13 +275,9 @@ var dlg = {
 											x_shift, h + 300
 										);
 				
-					ctx.lineTo(x_shift, canvArrow.height);
-				
-				}else{
-				
-					ctx.lineTo(x_shift, canvArrow.height);
-				
-				}
+				//}
+			
+				ctx.lineTo(x_shift, canvArrow.height);
 				
 			}
 			
@@ -133,7 +285,82 @@ var dlg = {
 		ctx.closePath();
 			
 		}
+		
+		this.draw_lines_y(w,h,ctx);
 				
+	},
+	
+	draw_lines_y: function(w,h,ctx){
+		
+		ctx.beginPath();
+
+		//ctx.lineWidth = 2;
+		//ctx.strokeStyle = '#f33';
+
+		for(var i = 0; i < lines_y.length; i++){
+			
+			var y_shift = lines_y[i];
+			//console.log(diff);
+			//var c = this.giveMeC(y_shift,h,canvArrow.height);
+			var c = 0;
+			if(y_shift < h + cp * 0.5 && y_shift > h - cp * 0.5){
+				c = this.giveMeC(y_shift,h,canvArrow.height);
+			}
+					/*
+					if(y_shift < h){
+						x_shift = lines_y[i] - 25;
+					}else{
+						y_shift = lines_y[i] + 25;
+					}
+					*/
+			
+			ctx.moveTo(0, y_shift);
+			
+			//if(y_shift > h - space-50 && y_shift < h + space+50){
+				
+				//var c = cc;
+				
+				//if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
+				
+				
+				ctx.lineTo(w - 300, y_shift);
+			
+				ctx.bezierCurveTo(
+										w - 165, y_shift, 
+										w - 135, y_shift + c, 
+										w, y_shift + c
+									);
+			
+				ctx.bezierCurveTo(
+										w + 135, y_shift + c, 
+										w + 165, y_shift, 
+										w + 300, y_shift
+									);
+			
+			//}
+		
+			ctx.lineTo(canvArrow.width, y_shift);
+			
+		}
+			
+		ctx.stroke();
+		ctx.closePath();
+				
+	},
+	
+	
+	giveMeC: function(s,p,o){
+		
+		var f = 4;
+			
+		var diff = p - s;
+		
+		if(diff > 0){
+			return (diff - cp * 0.5) / f;
+		}
+			
+		return (diff + cp * 0.5) / f;
+		
 	},
 	
 	
@@ -157,10 +384,16 @@ window.addEventListener('mousemove', function(e){
                 canvArrow.height = window.innerHeight;
 				
 				for(var i = 0; i < canvArrow.width; i+=50){
-					lines.push(i);
+					lines_x.push(i);
 				}
 				
-				space = parseInt(window.innerWidth / 8);
+				for(var i = 0; i < canvArrow.height; i+=50){
+					lines_y.push(i);
+				}
+				
+				space = 100;
+				
+				cp = (canvArrow.width + canvArrow.height) / 2;
                 
                 /**
                  * Your drawings need to be inside this function otherwise they will be reset when 

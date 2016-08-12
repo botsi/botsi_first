@@ -50,7 +50,7 @@ function page_load() {
 var dlg = {
 	
 	
-	draw_arrow: function(w,h){		//console.log('hi');
+	draw_arrow: function(w,h){
 
 
 		var ctx = canvArrow.getContext("2d");
@@ -76,14 +76,14 @@ var dlg = {
 				ctx.lineTo(lines[i], h - 300);
 			
 				ctx.bezierCurveTo(
-								  		lines[i], h - 150, 
-										lines[i] + c, h - 150, 
+								  		lines[i], h - 200, 
+										lines[i] + c, h - 100, 
 										lines[i] + c, h
 									);
 			
 				ctx.bezierCurveTo(
-								  		lines[i] + c, h + 150, 
-										lines[i], h + 150, 
+								  		lines[i] + c, h + 100, 
+										lines[i], h + 200, 
 										lines[i], h + 300
 									);
 			

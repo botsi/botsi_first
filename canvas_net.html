@@ -18,7 +18,7 @@
 		#arrow_Canvas {
 			left:0;
 			top: 0;
-			border:#f00 1px solid;
+			border:0 none;
 			display:block;
 			position:absolute;
 		}
@@ -27,7 +27,7 @@
 	
 //	on page load
 
-var canvArrow;
+var canvArrow, space;
 
 var lines = [];
 
@@ -66,9 +66,39 @@ var dlg = {
 
 		for(var i = 0; i < lines.length; i++){
 			ctx.moveTo(lines[i], 0);
-			ctx.lineTo(lines[i], canvArrow.height);
+			
+			//if(lines[i] > w - 100 && lines[i] < w + 100){
+				
+				var c = w - lines[i];
+				
+				if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
+			
+				ctx.lineTo(lines[i], h - 300);
+			
+				ctx.bezierCurveTo(
+								  		lines[i], h - 150, 
+										lines[i] + c, h - 150, 
+										lines[i] + c, h
+									);
+			
+				ctx.bezierCurveTo(
+								  		lines[i] + c, h + 150, 
+										lines[i], h + 150, 
+										lines[i], h + 300
+									);
+			
+			
+			
+				ctx.lineTo(lines[i], canvArrow.height);
+			
+			//}else{
+			
+			//	ctx.lineTo(lines[i], canvArrow.height);
+			
+			//}
 		}
 
+		ctx.strokeStyle = '#ccc';
 		ctx.stroke();
 		ctx.closePath();
 				
@@ -130,6 +160,8 @@ window.addEventListener('mousemove', function(e){
 				for(var i = 0; i < canvArrow.width; i+=20){
 					lines.push(i);
 				}
+				
+				space = parseInt(window.innerWidth / 4);
                 
                 /**
                  * Your drawings need to be inside this function otherwise they will be reset when 

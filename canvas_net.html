@@ -10,7 +10,10 @@
 			height:100%;
 			margin:0;
 			padding:0;
-			
+			background:#ccc;
+			/*
+			background: rgba(0, 255, 0, 1) url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+			*/
 		}
 		body {
 			font-family:Arial, Helvetica, sans-serif;
@@ -50,64 +53,93 @@ function page_load() {
 var dlg = {
 	
 	
-	draw_arrow: function(w,h){
-
+	draw_all: function(w,h){
 
 		var ctx = canvArrow.getContext("2d");
 			
 		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
+
+		this.draw_bullet(w,h,ctx);
+				
+	},
+	
+	draw_bullet: function(w,h,ctx){
+			
+		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
+
 		ctx.beginPath();
 		ctx.arc(w, h, 12, 0, 2 * Math.PI, false);
 		ctx.fillStyle = '#0f0';
 		ctx.fill();
 		ctx.closePath();
 
+		this.draw_lines(w,h,ctx);
+				
+	},
+	
+	draw_lines: function(w,h,ctx){
+
+		for(var l = 0; l < 2; l++){
+		
 		ctx.beginPath();
 
-		for(var i = 0; i < lines.length; i++){
-			ctx.moveTo(lines[i], 0);
-			
-			if(lines[i] > w - space-50 && lines[i] < w + space+50){
-				
-				var c = w - lines[i];
-				
-				if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
-			
-				ctx.lineTo(lines[i], h - 300);
-			
-				ctx.bezierCurveTo(
-								  		lines[i], h - 165, 
-										lines[i] + c, h - 135, 
-										lines[i] + c, h
-									);
-			
-				ctx.bezierCurveTo(
-								  		lines[i] + c, h + 135, 
-										lines[i], h + 165, 
-										lines[i], h + 300
-									);
-			
-			
-			
-				ctx.lineTo(lines[i], canvArrow.height);
-			
-			}else{
-			
-				ctx.lineTo(lines[i], canvArrow.height);
-			
-			}
-		}
+		ctx.lineWidth = (l == 0) ? 50 : 2;
+		ctx.strokeStyle = (l == 0) ? '#ccc' : '#f33';
 
-		ctx.strokeStyle = '#ccc';
+			for(var i = 0; i < lines.length; i++){
+				
+				var x_shift = lines[i];
+				if(l == 0){
+					if(x_shift < w){
+						x_shift = lines[i] - 25;
+					}else{
+						x_shift = lines[i] + 25;
+					}
+				}
+				
+				ctx.moveTo(x_shift, 0);
+				
+				if(x_shift > w - space-50 && x_shift < w + space+50){
+					
+					var c = w - x_shift;
+					
+					if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
+				
+					ctx.lineTo(x_shift, h - 300);
+				
+					ctx.bezierCurveTo(
+											x_shift, h - 165, 
+											x_shift + c, h - 135, 
+											x_shift + c, h
+										);
+				
+					ctx.bezierCurveTo(
+											x_shift + c, h + 135, 
+											x_shift, h + 165, 
+											x_shift, h + 300
+										);
+				
+					ctx.lineTo(x_shift, canvArrow.height);
+				
+				}else{
+				
+					ctx.lineTo(x_shift, canvArrow.height);
+				
+				}
+				
+			}
+			
 		ctx.stroke();
 		ctx.closePath();
+			
+		}
 				
 	},
 	
 	
 	auto_close: function(w,h){
 		var param = 0;			
-		pneuId = setInterval(dlg.draw_arrow(w,h,param), 100);
+		pneuId = setInterval(dlg.draw_all(w,h,param), 100);
 		
 	}
 	
@@ -115,7 +147,7 @@ var dlg = {
 
 document.addEventListener('DOMContentLoaded', page_load, false);
 window.addEventListener('mousemove', function(e){
-	dlg.draw_arrow(e.clientX,e.clientY);
+	dlg.draw_all(e.clientX,e.clientY);
 }, false);
 
         window.addEventListener('resize', resizeCanvas, false);

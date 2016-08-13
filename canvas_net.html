@@ -10,27 +10,79 @@
 			height:100%;
 			margin:0;
 			padding:0;
+			background:#fff;
 			/*
-			background:#ccc;
-			background: rgba(0, 255, 0, 1) url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center bottom;
 			*/
+
 		}
 		body {
 			font-family:Arial, Helvetica, sans-serif;
+		}
+		.gray_photo {
+			/*background-image: url("images/bg_gray_photo.jpg");*/
+			background: rgba(0, 255, 0, 1) url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+		}
+		.blue_photo {
+			background: rgba(0, 255, 0, 1) url("images/bg_blue_photo.jpg") no-repeat fixed center center / cover ;
 		}
 		#arrow_Canvas {
 			left:0;
 			top: 0;
 			border:0 none;
 			display:block;
-			position:absolute;
+			position:fixed;
 		}
-    </style>  
+		#imageme {
+			position:fixed;
+			width:100%;
+			top:0;
+		}
+		#topme {
+			visibility:hidden;
+			position:absolute;
+			top:0;
+		}
+		#bottomme {
+			visibility:hidden;
+			position:absolute;
+			bottom:0;
+		}
+		#scrollme {
+			background-color:#0FF;
+			position:absolute;
+			width:100%;
+			top:0;
+			visibility:hidden;
+			/*
+			opacity:0.4;
+			*/
+		}
+		.scrollme_content {
+		  background: #999;
+		  border: 0 none;
+		  cursor: pointer;
+		  display: inline-block;
+		  height: 50px;
+		  margin: 0 49px;
+		  position: relative;
+		  top: 200px;
+		  visibility: visible;
+		  width: 100px;
+		  text-align: center;
+		  vertical-align: middle;
+		  line-height: 50px;
+		  color:#fff;
+		}
+	</style>  
     <script type="text/javascript">
 	
 //	on page load
 
-var canvArrow, space, cp, pneuId;
+var canvArrow, cp, pneuId;
 
 var lines_x = [];
 var lines_y = [];
@@ -43,7 +95,23 @@ function page_load() {
 	
 	canvArrow = document.getElementById("arrow_Canvas");
 	
+	imageMe = document.getElementById("imageme");
+	
+	topMe = document.getElementById("topme");
+	
+	bottomMe = document.getElementById("bottomme");
+	
+	chapterLinks = document.getElementsByClassName("scrollme_content");
+	
 	//	do
+	
+	for(var i = 0; i < chapterLinks.length; i++){
+
+		chapterLinks[i].addEventListener('click', function(){
+			 chapter.show(this);
+		}, false);
+
+	}
 	
 	resizeCanvas();
 
@@ -51,10 +119,32 @@ function page_load() {
 
 }
 
-var dlg = {
+var chapter = {
 	
+	old_c: '',
+	
+	show: function(t){
+		
+		if(this.old_c != ''){imageMe.classList.remove(this.old_c);}
+		
+		var cl = t.innerHTML;
+		
+		imageMe.classList.add(cl);
+		
+		bottomMe.scrollIntoView({block: "start", behavior: "smooth"});
+		
+		this.old_c = cl;
+	
+	}
+	
+};
+
+var dlg = {
+
 	
 	draw_all: function(w,h){
+		
+		dlg.wh_store = [w,h];
 
 		var ctx = canvArrow.getContext("2d");
 			
@@ -66,7 +156,7 @@ var dlg = {
 	
 	draw_bullet: function(w,h,ctx){
 		
-		
+		/*
 		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
 
 		ctx.beginPath();
@@ -76,6 +166,7 @@ var dlg = {
 		ctx.closePath();
 
 		this.draw_lines_x(w,h,ctx);
+		*/
 				
 	},
 		draw_center_x: function(w,h,ctx){
@@ -84,11 +175,7 @@ var dlg = {
 	
 		ctx.beginPath();
 
-		//ctx.lineWidth = 2;
-		//ctx.strokeStyle = '#f33';
-		ctx.fillStyle = "#ccc";
-		
-		//var lines = [w - 50, w + 50];
+		ctx.fillStyle = "#fff";
 
 			for(var i = 0; i < 2; i++){
 				
@@ -108,18 +195,18 @@ var dlg = {
 					
 					}
 						
-						ctx.lineTo(x_shift, h - 300);
+						ctx.lineTo(x_shift, h - this.dw_param[2]);
 				
 					ctx.bezierCurveTo(
-											x_shift, h - 165, 
-											x_shift + c, h - 135, 
+											x_shift, h - this.dw_param[1], 
+											x_shift + c, h - this.dw_param[0], 
 											x_shift + c, h
 										);
 				
 					ctx.bezierCurveTo(
-											x_shift + c, h + 135, 
-											x_shift, h + 165, 
-											x_shift, h + 300
+											x_shift + c, h + this.dw_param[0], 
+											x_shift, h + this.dw_param[1], 
+											x_shift, h + this.dw_param[2]
 										);
 				
 					ctx.lineTo(x_shift, canvArrow.height);
@@ -131,14 +218,7 @@ var dlg = {
 					}
 				
 			}
-			/*	
-			ctx.moveTo(x_shift - 50, h - 300);
-		
-			ctx.moveTo(x_shift - 50, h + 300);
-			ctx.lineTo(x_shift, h + 300);
-			*/
 			
-		//ctx.stroke();
 		ctx.fill();
 
 		ctx.closePath();
@@ -153,35 +233,10 @@ var dlg = {
 		
 		ctx.beginPath();
 
-		//ctx.lineWidth = 2;
-		//ctx.strokeStyle = '#f33';
-		//ctx.fillStyle = "#f0f";
-		/*
-		var hh = parseInt(h / 50);
-		
-		var lines = [lines_y[hh], lines_y[hh+1]];
-
-
-
-
-			
-		
-		var lines = [];
-		
-		lines.push(lines_y[hh]);
-		
-		lines.push(lines_y[hh+1]);
-
-
-
-
-*/
-//		var lines = [h - 25, h + 25];
 		var hh = parseInt((h-1) / 50);
 
 			for(var i = 0; i < 2; i++){
 				
-				//var y_shift = lines[i];
 				var y_shift = lines_y[hh+i];	//	ex lines
 					
 			var c = this.giveMeC(y_shift,h,canvArrow.height);
@@ -189,37 +244,36 @@ var dlg = {
 				
 					if(i == 1){
 					
-					ctx.moveTo(w - 300, y_shift - 50);
+					ctx.moveTo(w - this.dw_param[2], y_shift - 50);
 					
-					ctx.lineTo(w - 300, y_shift);
+					ctx.lineTo(w - this.dw_param[2], y_shift);
 					
 					}else{
 					
-					ctx.moveTo(w - 300, y_shift);
+					ctx.moveTo(w - this.dw_param[2], y_shift);
 					
 					}
 				
 					ctx.bezierCurveTo(
-											w - 165, y_shift, 
-											w - 135, y_shift + c, 
+											w - this.dw_param[1], y_shift, 
+											w - this.dw_param[0], y_shift + c, 
 											w, y_shift + c
 										);
 				
 					ctx.bezierCurveTo(
-											w + 135, y_shift + c, 
-											w + 165, y_shift, 
-											w + 300, y_shift
+											w + this.dw_param[0], y_shift + c, 
+											w + this.dw_param[1], y_shift, 
+											w + this.dw_param[2], y_shift
 										);
 					
 					if(i == 0){
 					
-					ctx.lineTo(w + 300, y_shift + 50);
+					ctx.lineTo(w + this.dw_param[2], y_shift + 50);
 					
 					}
 				
 			}
 			
-		//ctx.stroke();
 		ctx.fill();
 		ctx.closePath();
 		
@@ -235,8 +289,8 @@ var dlg = {
 		
 		ctx.beginPath();
 
-		ctx.lineWidth = (l == 0) ? 50 : 2;
-		ctx.strokeStyle = (l == 0) ? '#ccc' : '#f33';
+		ctx.lineWidth = (l == 0) ? 50 : 1;
+		ctx.strokeStyle = (l == 0) ? '#fff' : '#999';
 
 			for(var i = 0; i < lines_x.length; i++){
 				
@@ -257,25 +311,19 @@ var dlg = {
 				
 				ctx.moveTo(x_shift, 0);
 				
-				//if(x_shift > w - space-50 && x_shift < w + space+50){
-					
-					
-				
-					ctx.lineTo(x_shift, h - 300);
+					ctx.lineTo(x_shift, h - this.dw_param[2]);
 				
 					ctx.bezierCurveTo(
-											x_shift, h - 165, 
-											x_shift + c, h - 135, 
+											x_shift, h - this.dw_param[1], 
+											x_shift + c, h - this.dw_param[0], 
 											x_shift + c, h
 										);
 				
 					ctx.bezierCurveTo(
-											x_shift + c, h + 135, 
-											x_shift, h + 165, 
-											x_shift, h + 300
+											x_shift + c, h + this.dw_param[0], 
+											x_shift, h + this.dw_param[1], 
+											x_shift, h + this.dw_param[2]
 										);
-				
-				//}
 			
 				ctx.lineTo(x_shift, canvArrow.height);
 				
@@ -294,50 +342,31 @@ var dlg = {
 		
 		ctx.beginPath();
 
-		//ctx.lineWidth = 2;
-		//ctx.strokeStyle = '#f33';
-
 		for(var i = 0; i < lines_y.length; i++){
 			
 			var y_shift = lines_y[i];
-			//console.log(diff);
-			//var c = this.giveMeC(y_shift,h,canvArrow.height);
+			
 			var c = 0;
+			
 			if(y_shift < h + cp * 0.5 && y_shift > h - cp * 0.5){
 				c = this.giveMeC(y_shift,h,canvArrow.height);
 			}
-					/*
-					if(y_shift < h){
-						x_shift = lines_y[i] - 25;
-					}else{
-						y_shift = lines_y[i] + 25;
-					}
-					*/
 			
 			ctx.moveTo(0, y_shift);
 			
-			//if(y_shift > h - space-50 && y_shift < h + space+50){
-				
-				//var c = cc;
-				
-				//if(c > 0){c = c*0.8 - space}else{c = space + c*0.8}
-				
-				
-				ctx.lineTo(w - 300, y_shift);
+				ctx.lineTo(w - this.dw_param[2], y_shift);
 			
 				ctx.bezierCurveTo(
-										w - 165, y_shift, 
-										w - 135, y_shift + c, 
+										w - this.dw_param[1], y_shift, 
+										w - this.dw_param[0], y_shift + c, 
 										w, y_shift + c
 									);
 			
 				ctx.bezierCurveTo(
-										w + 135, y_shift + c, 
-										w + 165, y_shift, 
-										w + 300, y_shift
+										w + this.dw_param[0], y_shift + c, 
+										w + this.dw_param[1], y_shift, 
+										w + this.dw_param[2], y_shift
 									);
-			
-			//}
 		
 			ctx.lineTo(canvArrow.width, y_shift);
 			
@@ -345,36 +374,94 @@ var dlg = {
 			
 		ctx.stroke();
 		ctx.closePath();
-				
 	},
 	
 	
+	wh_store: [],
+	
+	dw_param: [300,300,600],
+	
+	spherize: 4,
+	
+	
 	giveMeC: function(s,p,o){
-		
-		var f = 4;
 			
 		var diff = p - s;
 		
 		if(diff > 0){
-			return (diff - cp * 0.5) / f;
+			return (diff - cp * 0.5) / dlg.spherize;
 		}
 			
-		return (diff + cp * 0.5) / f;
+		return (diff + cp * 0.5) / dlg.spherize;
 		
 	},
 	
+	allow_pneu: false,
 	
-	auto_close: function(w,h){
-		var param = 0;			
-		pneuId = setInterval(dlg.draw_all(w,h,param), 100);
+	eye_pneu: function(w,h,d){
 		
+		clearInterval(pneuId);
+		
+		var counter = 0;
+
+		dlg.wh_store = [w,h];
+		
+		var steps = [1032,520,264,136,72,40,24,16,12,9,7,5];
+		
+		if(d != 0){steps.reverse();}
+		
+		pneuId = window.setInterval(function(){
+			
+			dlg.spherize = steps[counter];
+									  
+			dlg.draw_all(dlg.wh_store[0], dlg.wh_store[1]);
+			
+			counter++;
+			
+			if(counter > 11){
+				clearInterval(pneuId);
+				allow_pneu = false;
+			}
+			
+		}, 20);
+		
+	},
+	
+	eye_scroll: function(p){
+		
+			if(p < 4){p = 4;}
+		
+			if(p > 300){p = 300;}
+			
+			dlg.spherize = p;
+									  
+			dlg.draw_all(dlg.wh_store[0], dlg.wh_store[1]);
+	
 	}
 	
 };
 
 document.addEventListener('DOMContentLoaded', page_load, false);
+
 window.addEventListener('mousemove', function(e){
+	//dlg.allow_pneu = false;
+	//clearInterval(pneuId);
 	dlg.draw_all(e.clientX,e.clientY);
+}, false);
+											  /*
+
+window.addEventListener('mouseup', function(e){
+	dlg.allow_pneu = true;
+	dlg.eye_pneu(e.clientX,e.clientY,1);
+}, false);
+											  */
+
+window.addEventListener('scroll', function(e){
+	/*
+	console.log(window.pageYOffset);
+	console.log(e.pageY);
+	*/
+	dlg.eye_scroll(300 - window.pageYOffset);
 }, false);
 
         window.addEventListener('resize', resizeCanvas, false);
@@ -391,9 +478,11 @@ window.addEventListener('mousemove', function(e){
 					lines_y.push(i);
 				}
 				
-				space = 100;
-				
 				cp = (canvArrow.width + canvArrow.height) / 2;
+				
+				dlg.spherize = cp;
+				
+				document.getElementById("scrollme").style.height = imageMe.style.height = window.innerHeight + 300 + 'px';
                 
                 /**
                  * Your drawings need to be inside this function otherwise they will be reset when 
@@ -411,6 +500,14 @@ window.addEventListener('mousemove', function(e){
 <head> 
    
 <body>
+<div id="imageme">
+</div>
 <canvas id="arrow_Canvas"></canvas>
+<div id="scrollme">
+	<div id="topme"></div>
+	<span class="scrollme_content">gray_photo</span>
+	<span class="scrollme_content">blue_photo</span>
+	<div id="bottomme"></div>
+</div>
 </body>
 </html>

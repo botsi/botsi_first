@@ -11,23 +11,18 @@
 			margin:0;
 			padding:0;
 			background:#fff;
-			/*
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center bottom;
-			*/
-
 		}
 		body {
 			font-family:Arial, Helvetica, sans-serif;
 		}
 		.gray_photo {
-			/*background-image: url("images/bg_gray_photo.jpg");*/
-			background: rgba(0, 255, 0, 1) url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+			background: url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+		}
+		.code_example {
+			background: url("images/code_example.jpg") no-repeat fixed center center / cover ;
 		}
 		.blue_photo {
-			background: rgba(0, 255, 0, 1) url("images/bg_blue_photo.jpg") no-repeat fixed center center / cover ;
+			background: url("images/bg_blue_photo.jpg") no-repeat fixed center center / cover ;
 		}
 		#arrow_Canvas {
 			left:0;
@@ -47,7 +42,9 @@
 			top:0;
 		}
 		#bottomme {
-			visibility:hidden;
+			background:rgba(0, 255, 0, 1) ;
+			visibility:visible;
+			width:100%;
 			position:absolute;
 			bottom:0;
 		}
@@ -57,9 +54,6 @@
 			width:100%;
 			top:0;
 			visibility:hidden;
-			/*
-			opacity:0.4;
-			*/
 		}
 		.scrollme_content {
 		  background: #999;
@@ -76,6 +70,19 @@
 		  vertical-align: middle;
 		  line-height: 50px;
 		  color:#fff;
+		}
+		#titleme {
+			background-color:#999;
+			position:fixed;
+		  display: inline-block;
+		  height: 50px;
+		  margin: 0 49px;
+			top:100px;
+		  text-align: center;
+		  vertical-align: middle;
+		  line-height: 50px;
+		  color:#fff;
+		  width:calc(100% - 100px);
 		}
 	</style>  
     <script type="text/javascript">
@@ -97,6 +104,8 @@ function page_load() {
 	
 	imageMe = document.getElementById("imageme");
 	
+	scrollMe = document.getElementById("scrollme");
+	
 	topMe = document.getElementById("topme");
 	
 	bottomMe = document.getElementById("bottomme");
@@ -104,22 +113,44 @@ function page_load() {
 	chapterLinks = document.getElementsByClassName("scrollme_content");
 	
 	//	do
-	
-	for(var i = 0; i < chapterLinks.length; i++){
 
-		chapterLinks[i].addEventListener('click', function(){
+	canvArrow.addEventListener('click', function(){
+		 
+		 topMe.scrollIntoView({block: "end", behavior: "smooth"});
+		 
+	}, false);
+	
+	for(var k in chapter.text){
+	
+		var s = document.createElement('span');
+	
+		s.className = 'scrollme_content';
+		
+		s.innerHTML = k;
+		
+		s.addEventListener('click', function(){
 			 chapter.show(this);
 		}, false);
-
+		
+		scrollMe.appendChild(s);
+	
 	}
 	
 	resizeCanvas();
 
-	
-
 }
 
 var chapter = {
+	
+	text: {
+		
+			gray_photo: "start",
+		
+			code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage.",
+			
+			blue_photo: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel."
+			
+			},
 	
 	old_c: '',
 	
@@ -130,6 +161,8 @@ var chapter = {
 		var cl = t.innerHTML;
 		
 		imageMe.classList.add(cl);
+		
+		bottomMe.innerHTML = this.text[cl];
 		
 		bottomMe.scrollIntoView({block: "start", behavior: "smooth"});
 		
@@ -154,22 +187,7 @@ var dlg = {
 				
 	},
 	
-	draw_bullet: function(w,h,ctx){
-		
-		/*
-		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
-
-		ctx.beginPath();
-		ctx.arc(w, h, 12, 0, 2 * Math.PI, false);
-		ctx.fillStyle = '#0f0';
-		ctx.fill();
-		ctx.closePath();
-
-		this.draw_lines_x(w,h,ctx);
-		*/
-				
-	},
-		draw_center_x: function(w,h,ctx){
+	draw_center_x: function(w,h,ctx){
 		
 		ctx.globalCompositeOperation='source-over';
 	
@@ -381,7 +399,7 @@ var dlg = {
 	
 	dw_param: [300,300,600],
 	
-	spherize: 4,
+	spherize: 3,
 	
 	
 	giveMeC: function(s,p,o){
@@ -429,7 +447,7 @@ var dlg = {
 	
 	eye_scroll: function(p){
 		
-			if(p < 4){p = 4;}
+			if(p < 3){p = 3;}
 		
 			if(p > 300){p = 300;}
 			
@@ -505,9 +523,10 @@ window.addEventListener('scroll', function(e){
 <canvas id="arrow_Canvas"></canvas>
 <div id="scrollme">
 	<div id="topme"></div>
-	<span class="scrollme_content">gray_photo</span>
-	<span class="scrollme_content">blue_photo</span>
 	<div id="bottomme"></div>
+</div>
+<div id="titleme">
+	david abotsi | vanilla js programming
 </div>
 </body>
 </html>

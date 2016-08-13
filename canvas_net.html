@@ -24,12 +24,19 @@
 		.blue_photo {
 			background: url("images/bg_blue_photo.jpg") no-repeat fixed center center / cover ;
 		}
+		.about_me {
+			background: url("images/bg_mecolored.jpg") no-repeat fixed center center / cover ;
+		}
+		.botanic {
+			background: url("images/bg_tree.jpg") no-repeat fixed center center / cover ;
+		}
 		#arrow_Canvas {
 			left:0;
 			top: 0;
 			border:0 none;
 			display:block;
 			position:fixed;
+			opacity: 0.9;
 		}
 		#imageme {
 			position:fixed;
@@ -42,11 +49,15 @@
 			top:0;
 		}
 		#bottomme {
-			background:rgba(0, 255, 0, 1) ;
-			visibility:visible;
-			width:100%;
-			position:absolute;
-			bottom:0;
+		  background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 33%);
+		  bottom: 0;
+		  line-height: 50px;
+		  min-height: 100px;
+		  padding: 0 16px;
+		  position: absolute;
+		  vertical-align: middle;
+		  visibility: visible;
+		  width: calc(100% - 32px);
 		}
 		#scrollme {
 			background-color:#0FF;
@@ -61,7 +72,7 @@
 		  cursor: pointer;
 		  display: inline-block;
 		  height: 50px;
-		  margin: 0 49px;
+		  margin: 0 50px;
 		  position: relative;
 		  top: 200px;
 		  visibility: visible;
@@ -148,7 +159,11 @@ var chapter = {
 		
 			code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage.",
 			
-			blue_photo: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel."
+			blue_photo: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel.",
+			
+			about_me: "As a big lover of music i go frequently to festivals as the Montreux Jazz and other. Live is hard, but the nights are long. Salsa and other latin Music are my favorites if i had to choose witch sounds i take along with me to the lonley island. Read more about me in my <a href='cv.pdf' target='_blank' >curriculum vitae</a>.",
+			
+			botanic: "Beside my interests for programming i have a big interest in botanics. These brings me to botanic gardens all over the world. In this case it was the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how out of time and abondonaded."
 			
 			},
 	
@@ -195,15 +210,18 @@ var dlg = {
 
 		ctx.fillStyle = "#fff";
 
+
+		var hh = parseInt((w-1) / 50);
+
 			for(var i = 0; i < 2; i++){
 				
-				var x_shift = (i == 0) ? w - 50 : w + 50;	//	ex lines
+				var x_shift = lines_x[hh+i];	//	ex lines
 					
 				var c = this.giveMeC(x_shift,w,canvArrow.width);
 				
 					if(i == 1){
 					
-						ctx.moveTo(x_shift - 100, 0);
+						ctx.moveTo(x_shift - 50, 0);
 						
 						ctx.lineTo(x_shift, 0);
 					
@@ -231,7 +249,7 @@ var dlg = {
 					
 					if(i == 0){
 					
-						ctx.lineTo(x_shift + 100, canvArrow.height);
+						ctx.lineTo(x_shift + 50, canvArrow.height);
 					
 					}
 				
@@ -241,7 +259,7 @@ var dlg = {
 
 		ctx.closePath();
 		
-		ctx.globalCompositeOperation='xor';
+		ctx.globalCompositeOperation='destination-in';
 		
 		this.draw_center_y(w,h,ctx);
 				
@@ -259,7 +277,7 @@ var dlg = {
 					
 			var c = this.giveMeC(y_shift,h,canvArrow.height);
 				
-				
+
 					if(i == 1){
 					
 					ctx.moveTo(w - this.dw_param[2], y_shift - 50);
@@ -295,6 +313,14 @@ var dlg = {
 		ctx.fill();
 		ctx.closePath();
 		
+		ctx.globalCompositeOperation='xor';
+	
+		ctx.beginPath();
+
+		ctx.fillStyle = "#fff";
+		ctx.fillRect(0, 0, canvArrow.width, canvArrow.height);
+		ctx.closePath();
+	
 		ctx.globalCompositeOperation='source-over';
 		
 		this.draw_lines_x(w,h,ctx);
@@ -302,13 +328,11 @@ var dlg = {
 	},
 	
 	draw_lines_x: function(w,h,ctx){
-
-		for(var l = 0; l < 2; l++){
 		
 		ctx.beginPath();
 
-		ctx.lineWidth = (l == 0) ? 50 : 1;
-		ctx.strokeStyle = (l == 0) ? '#fff' : '#999';
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = '#999';
 
 			for(var i = 0; i < lines_x.length; i++){
 				
@@ -317,14 +341,6 @@ var dlg = {
 				var c = 0;
 				if(x_shift < w + cp * 0.5 && x_shift > w - cp * 0.5){
 					c = this.giveMeC(x_shift,w,canvArrow.width);
-				}
-			
-				if(l == 0){
-					if(x_shift < w){
-						x_shift = lines_x[i] - 25;
-					}else{
-						x_shift = lines_x[i] + 25;
-					}
 				}
 				
 				ctx.moveTo(x_shift, 0);
@@ -350,7 +366,6 @@ var dlg = {
 		ctx.stroke();
 		ctx.closePath();
 			
-		}
 		
 		this.draw_lines_y(w,h,ctx);
 				

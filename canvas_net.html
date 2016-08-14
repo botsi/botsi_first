@@ -49,6 +49,27 @@
 			width:100%;
 			top:0;
 		}
+		#switchme {
+			position:fixed;
+			visibility: visible;
+			width:200px;
+			max-width:200px;
+			line-height:50px;
+			  text-align: center;
+			  vertical-align: middle;
+			  line-height: 50px;
+			  color:#fff;
+			  font-size:14px;
+		  background: #999;
+		  border: 0 none;
+		  cursor: pointer;
+		  display: inline-block;
+		}
+		#switchme hr {
+			border:0 none;
+			border-bottom: 1px solid #fff;
+			margin: 0;
+		}
 		#topme {
 			visibility:hidden;
 			position:absolute;
@@ -109,6 +130,33 @@
 		
 		var lines_x, lines_y;
 		
+		var ext_link_text = {
+			jobs:['abotsi.com','guarani.gallery','ilsorriso.ch','zaehringerhof.ch','silviabonafe.com','viernesazul.ch'],
+			other_objects:['abotsi.com','abotsi.com','abotsi.com','abotsi.com','abotsi.com','abotsi.com']
+		};
+		
+		function go_top(){
+			
+			topMe.scrollIntoView({block: "end", behavior: "smooth"});
+			
+		}
+		
+		function open_ext(t){
+			
+			var u = t.innerHTML.slice(6);
+			
+			if(u.indexOf("google") != -1){
+				u = u + '/maps/place/Abotsi+C%C3%A9ramique+Keramikatelier/@46.9735665,7.4743263,15z/data=!4m5!3m4!1s0x0:0x1037fc2174584456!8m2!3d46.9735665!4d7.4743263';
+			}
+			
+			if(u.indexOf("abotsi") != -1){
+				u = u + '/?objects';
+			}
+			
+			window.open('http://' + u,'_blank');
+			
+		}
+		
 		function page_load() {
 		
 			//	define
@@ -130,16 +178,26 @@
 			//	do
 		
 			canvArrow.addEventListener('click', function(){
+														 
+				// query switch
+				
+				if(imageMe.className == 'jobs' || imageMe.className == 'other_objects' || imageMe.className == 'contact'){
+					
+					//console.log(e.clientX);
+					
+					//var p = [e.clientX,e.clientY];
+					
+					chapter.query_switch(imageMe.className);
+				
+				}else{
 				 
-				 topMe.scrollIntoView({block: "end", behavior: "smooth"});
+					go_top();
+				
+				};
 				 
 			}, false);
 		
-			titleMe.addEventListener('click', function(){
-				 
-				 topMe.scrollIntoView({block: "end", behavior: "smooth"});
-				 
-			}, false);
+			titleMe.addEventListener('click', go_top, false);
 			
 			for(var k in chapter.text){
 			
@@ -167,13 +225,13 @@
 				
 					irritations: "Nun ist sie eingereicht: die Völkerrechtsinitiative, mit der die SVP den Vorrang der Bundesverfassung vor Völkerrecht festschreiben will. Die Schweiz soll internationale Abkommen neu aushandeln oder kündigen müssen, wenn eine widersprechende Bestimmung per Volksinitiative in die Verfassung geschrieben wird. Zudem soll das Bundesgericht Abkommen, die im Widerspruch zur Verfassung stehen, nur noch anwenden dürfen, wenn sie dem Referendum unterstanden.<br/><br/>Die SVP reagiert mit ihrer Initiative auf Entwicklungen in der Rechtsprechung des Bundesgerichts. Dieses räumte in jüngeren Entscheiden den Individualgarantien der Europäischen Menschenrechtskonvention (EMRK) und den Rechten, die EU-Bürger aus dem Personenfreizügigkeitsabkommen ableiten können, den Vorrang vor Volks- und Parlamentsentscheiden ein. Darüber hinaus konfrontiert die SVP mit ihrer Initiative aber auch eine Entwicklung hin zu einer zunehmend internationalisierten Rechtsetzung und Rechtsprechung. Dieser ist ein gewisses Demokratiedefizit nicht abzusprechen – das zeigt auch die linke Kritik an Freihandelsabkommen.<br/><br/>Dennoch sollte nicht vergessen gehen, dass die SVP mit ihrer Initiative eine klare Agenda verfolgt. Sie will Begehren wie die Ausschaffung krimineller Ausländer kompromisslos durchsetzen und sich weder durch die Grundrechte der Bundesverfassung noch durch Garantien der EMRK bremsen lassen.<br/><br/>Zudem lässt sich durch eine Verfassungsänderung die Tatsache nicht aus der Welt schaffen, dass sich die Schweiz per Vertrag zur Respektierung von Personenfreizügigkeit und EMRK verpflichtet hat. Die SVP sagt offen, dass sie eine Kündigung der EMRK in Kauf nimmt, verspricht gleichzeitig aber, dass es nicht so weit kommen werde. Das erinnert an das Versprechen, das die SVP vor der Zuwanderungsinitiative abgab: Die Zuwanderung liesse sich reduzieren, ohne die bilateralen Verträge zu gefährden. Davon ist heute keine Rede mehr. Die Prognose erscheint deshalb nicht gewagt: Ein Ja zur Völkerrechtsinitiative würde für jahrelange Diskussionen sorgen, hohe Rechtsunsicherheit schaffen – und am Ende mehr Probleme schaffen als lösen.",
 				
-					code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage.",
+					code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage. View more details about it at <a href='https://github.com/botsi/botsi_first' target='_blank' >GitHub</a>.",
 					
 					jobs: "Some webpages i have done.",
 					
 					other_objects: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel.",
 					
-					about_me: "As a big lover of music i go frequently to festivals as the Montreux Jazz and other. Live is hard, but the nights are long. Salsa and other latin Music are my favorites if i had to choose witch sounds i take along with me to the lonley island. Read more about me in my <a href='cv.pdf' target='_blank' >curriculum vitae</a>.",
+					about_me: "As a big lover of music i go frequently to festivals as the Montreux Jazz and other. Live is hard, but the nights are long. Salsa and other latin Music are my favorites if i had to choose witch sounds i take along with me to the lonley island. Read more about me in my <a href='../cv.pdf' target='_blank' >curriculum vitae</a>.",
 					
 					botanic: "Beside my interests for programming i have a big interest in botanics. These brings me to botanic gardens all over the world. In this case it was the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how out of time and abondonaded.",
 					
@@ -197,6 +255,96 @@
 				
 				this.old_c = cl;
 			
+			},
+			
+			query_switch: function(sh,p){
+				
+				if(sh != 0){
+							
+					if(document.getElementById('switchme')){
+					
+						scrollMe.removeChild(document.getElementById('switchme'));
+					
+					}
+					
+					var ih = 'go to ';
+							
+					if(sh == 'contact'){
+					
+						ih = ih + 'www.google.ch';
+					
+					}
+							
+					if(sh == 'jobs' || sh == 'other_objects'){
+						
+						var sheetpos = 0;
+							
+						if(dlg.wh_store[1] < canvArrow.height / 2){
+	
+							if(dlg.wh_store[0] > canvArrow.width * 0.33 && dlg.wh_store[0] < canvArrow.width * 0.66) {
+								
+								sheetpos = 1;
+								
+							}else{
+	
+								if(dlg.wh_store[0] <= canvArrow.width * 0.33) {
+									
+									sheetpos = 0;
+									
+								}else{
+									
+									sheetpos = 2;
+									
+								}
+							
+							}
+							
+						}else{
+	
+							if(dlg.wh_store[0] > canvArrow.width * 0.33 && dlg.wh_store[0] < canvArrow.width * 0.66) {
+								
+								sheetpos = 4;
+								
+							}else{
+	
+								if(dlg.wh_store[0] <= canvArrow.width * 0.33) {
+									
+									sheetpos = 3;
+									
+								}else{
+									
+									sheetpos = 5;
+									
+								}
+							
+							}
+							
+						}
+
+						ih = ih + ext_link_text[sh][sheetpos];
+					
+					}
+					
+					var d = document.createElement('div');
+				
+					d.id = 'switchme';
+					
+					d.innerHTML = '<span onclick="chapter.query_switch(0);open_ext(this)">' + ih + '</span><hr/>or <span onclick="chapter.query_switch(0);go_top();">back to main menu</span>';
+					
+					scrollMe.appendChild(d);
+				
+					d.style.left = dlg.wh_store[0] - 100 + 'px';
+				
+					d.style.top = dlg.wh_store[1] - 50 + 'px';
+				
+				}else{
+					
+						scrollMe.removeChild(document.getElementById('switchme'));
+					
+				}
+
+				
+				
 			}
 			
 		};
@@ -225,24 +373,16 @@
 				ctx.fillStyle = "#fff";
 		
 				var hh = parseInt((w-1-this.indent_x) / 50);
-		
-				for(var i = 0; i < 2; i++){
-					
-					var x_shift = lines_x[hh+i];
+
+					var x_shift = lines_x[hh];
 						
 					var c = this.giveMeC(x_shift,w,canvArrow.width);
+
+					//	start
 					
-					if(i == 1){
+					ctx.moveTo(x_shift, 0);
 					
-						ctx.lineTo(x_shift - 50, 0);
-						
-						ctx.lineTo(x_shift, 0);
-					
-					}else{
-					
-						ctx.moveTo(x_shift, 0);
-					
-					}
+					//	runter
 						
 					ctx.lineTo(x_shift, h - this.dw_param[2]);
 				
@@ -260,13 +400,30 @@
 				
 					ctx.lineTo(x_shift, canvArrow.height);
 					
-					if(i == 0){
+					ctx.lineTo(x_shift + 50, canvArrow.height);
 					
-						ctx.lineTo(x_shift + 50, canvArrow.height);
+					// rauf 
+
+					x_shift = lines_x[hh+1];
+						
+					c = this.giveMeC(x_shift,w,canvArrow.width);
 					
-					}
+					ctx.lineTo(x_shift, h + this.dw_param[2]);
 					
-				}
+					ctx.bezierCurveTo(
+											x_shift, h + this.dw_param[1], 
+											x_shift + c, h + this.dw_param[0], 
+											x_shift + c, h
+										);
+					ctx.bezierCurveTo(
+											x_shift + c, h - this.dw_param[0], 
+											x_shift, h - this.dw_param[1], 
+											x_shift, h - this.dw_param[2]
+										);
+					
+					ctx.lineTo(x_shift, 0);
+					
+					ctx.lineTo(x_shift - 50, 0);
 					
 				ctx.fill();
 		
@@ -287,23 +444,16 @@
 		
 				var hh = parseInt((h-1-this.indent_y) / 50);
 		
-				for(var i = 0; i < 2; i++){
-					
-					var y_shift = lines_y[hh+i];
+
+					var y_shift = lines_y[hh];
 						
 					var c = this.giveMeC(y_shift,h,canvArrow.height);
-					
-					if(i == 1){
-					
-					ctx.lineTo(0, y_shift - 50);
-					
-					ctx.lineTo(0, y_shift);
-					
-					}else{
+
+					//	start
 					
 					ctx.moveTo(0, y_shift);
 					
-					}
+					//	runter
 						
 					ctx.lineTo(w - this.dw_param[2], y_shift);
 				
@@ -314,20 +464,37 @@
 										);
 				
 					ctx.bezierCurveTo(
-											w + this.dw_param[0], y_shift + c, 
+											w + this.dw_param[0], y_shift + c,
 											w + this.dw_param[1], y_shift, 
 											w + this.dw_param[2], y_shift
 										);
-		
+				
 					ctx.lineTo(canvArrow.width, y_shift);
-					
-					if(i == 0){
 					
 					ctx.lineTo(canvArrow.width, y_shift + 50);
 					
-					}
+					// rauf 
+
+					y_shift = lines_y[hh+1];
+						
+					c = this.giveMeC(y_shift,h,canvArrow.height);
 					
-				}
+					ctx.lineTo(w + this.dw_param[2], y_shift);
+					
+					ctx.bezierCurveTo(
+											w + this.dw_param[1], y_shift, 
+											w + this.dw_param[0], y_shift + c, 
+											w, y_shift + c
+										);
+					ctx.bezierCurveTo(
+											w - this.dw_param[0], y_shift + c, 
+											w - this.dw_param[1], y_shift, 
+											w - this.dw_param[2], y_shift
+										);
+					
+					ctx.lineTo(0, y_shift);
+					
+					ctx.lineTo(0, y_shift - 50);
 					
 				ctx.fill();
 				ctx.closePath();
@@ -523,6 +690,8 @@
 				}
 				
 				cp = (canvArrow.width + canvArrow.height) / 2;
+				
+				dlg.dw_param = [cp * 0.14,cp * 0.18,cp * 0.32];
 				
 				dlg.spherize = cp;
 				

@@ -15,20 +15,26 @@
 		body {
 			font-family:Arial, Helvetica, sans-serif;
 		}
-		.gray_photo {
+		.irritations {
 			background: url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
 		}
 		.code_example {
 			background: url("images/code_example.jpg") no-repeat fixed center center / cover ;
 		}
-		.blue_photo {
-			background: url("images/bg_blue_photo.jpg") no-repeat fixed center center / cover ;
+		.jobs {
+			background: url("images/bg_works.jpg") no-repeat fixed center center / cover ;
+		}
+		.other_objects {
+			background: url("images/bg_ceramique_photo.jpg") no-repeat fixed center center / cover ;
 		}
 		.about_me {
 			background: url("images/bg_mecolored.jpg") no-repeat fixed center center / cover ;
 		}
 		.botanic {
 			background: url("images/bg_tree.jpg") no-repeat fixed center center / cover ;
+		}
+		.contact {
+			background: url("images/bg_contact.jpg") no-repeat fixed center center / cover ;
 		}
 		#arrow_Canvas {
 			left:0;
@@ -49,15 +55,15 @@
 			top:0;
 		}
 		#bottomme {
-		  background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 33%);
-		  bottom: 0;
+		  background: rgba(0, 0, 0, 0) linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 36px);
 		  line-height: 50px;
 		  min-height: 100px;
-		  padding: 0 16px;
+		  padding: 0 75px;
 		  position: absolute;
 		  vertical-align: middle;
 		  visibility: visible;
-		  width: calc(100% - 32px);
+		  width: calc(100% - 150px);
+		  bottom:0;
 		}
 		#scrollme {
 			background-color:#0FF;
@@ -72,156 +78,163 @@
 		  cursor: pointer;
 		  display: inline-block;
 		  height: 50px;
-		  margin: 0 50px;
 		  position: relative;
-		  top: 200px;
 		  visibility: visible;
 		  width: 100px;
 		  text-align: center;
 		  vertical-align: middle;
 		  line-height: 50px;
 		  color:#fff;
+		  margin: 100px 50px -50px 50px;
+		  font-size:14px;
 		}
 		#titleme {
 			background-color:#999;
 			position:fixed;
 		  display: inline-block;
 		  height: 50px;
-		  margin: 0 49px;
-			top:100px;
 		  text-align: center;
 		  vertical-align: middle;
 		  line-height: 50px;
 		  color:#fff;
-		  width:calc(100% - 100px);
+		  font-size:18px;
+		  cursor:pointer;
 		}
 	</style>  
     <script type="text/javascript">
 	
-//	on page load
-
-var canvArrow, cp, pneuId;
-
-var lines_x = [];
-var lines_y = [];
-
-function page_load() {
-
-	//	define
-	
-	//btnStart = document.getElementById('start');
-	
-	canvArrow = document.getElementById("arrow_Canvas");
-	
-	imageMe = document.getElementById("imageme");
-	
-	scrollMe = document.getElementById("scrollme");
-	
-	topMe = document.getElementById("topme");
-	
-	bottomMe = document.getElementById("bottomme");
-	
-	chapterLinks = document.getElementsByClassName("scrollme_content");
-	
-	//	do
-
-	canvArrow.addEventListener('click', function(){
-		 
-		 topMe.scrollIntoView({block: "end", behavior: "smooth"});
-		 
-	}, false);
-	
-	for(var k in chapter.text){
-	
-		var s = document.createElement('span');
-	
-		s.className = 'scrollme_content';
+		//	on page load
 		
-		s.innerHTML = k;
+		var canvArrow, cp, resizeId;
 		
-		s.addEventListener('click', function(){
-			 chapter.show(this);
-		}, false);
+		var lines_x, lines_y;
 		
-		scrollMe.appendChild(s);
-	
-	}
-	
-	resizeCanvas();
-
-}
-
-var chapter = {
-	
-	text: {
+		function page_load() {
 		
-			gray_photo: "start",
-		
-			code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage.",
+			//	define
 			
-			blue_photo: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel.",
+			canvArrow = document.getElementById("arrow_Canvas");
 			
-			about_me: "As a big lover of music i go frequently to festivals as the Montreux Jazz and other. Live is hard, but the nights are long. Salsa and other latin Music are my favorites if i had to choose witch sounds i take along with me to the lonley island. Read more about me in my <a href='cv.pdf' target='_blank' >curriculum vitae</a>.",
+			titleMe = document.getElementById("titleme");
 			
-			botanic: "Beside my interests for programming i have a big interest in botanics. These brings me to botanic gardens all over the world. In this case it was the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how out of time and abondonaded."
+			imageMe = document.getElementById("imageme");
 			
-			},
-	
-	old_c: '',
-	
-	show: function(t){
-		
-		if(this.old_c != ''){imageMe.classList.remove(this.old_c);}
-		
-		var cl = t.innerHTML;
-		
-		imageMe.classList.add(cl);
-		
-		bottomMe.innerHTML = this.text[cl];
-		
-		bottomMe.scrollIntoView({block: "start", behavior: "smooth"});
-		
-		this.old_c = cl;
-	
-	}
-	
-};
-
-var dlg = {
-
-	
-	draw_all: function(w,h){
-		
-		dlg.wh_store = [w,h];
-
-		var ctx = canvArrow.getContext("2d");
+			scrollMe = document.getElementById("scrollme");
 			
-		ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
-
-		this.draw_center_x(w,h,ctx);
+			topMe = document.getElementById("topme");
+			
+			bottomMe = document.getElementById("bottomme");
+			
+			chapterLinks = document.getElementsByClassName("scrollme_content");
+			
+			//	do
+		
+			canvArrow.addEventListener('click', function(){
+				 
+				 topMe.scrollIntoView({block: "end", behavior: "smooth"});
+				 
+			}, false);
+		
+			titleMe.addEventListener('click', function(){
+				 
+				 topMe.scrollIntoView({block: "end", behavior: "smooth"});
+				 
+			}, false);
+			
+			for(var k in chapter.text){
+			
+				var s = document.createElement('span');
+			
+				s.className = 'scrollme_content';
 				
-	},
-	
-	draw_center_x: function(w,h,ctx){
-		
-		ctx.globalCompositeOperation='source-over';
-	
-		ctx.beginPath();
-
-		ctx.fillStyle = "#fff";
-
-
-		var hh = parseInt((w-1) / 50);
-
-			for(var i = 0; i < 2; i++){
+				s.innerHTML = k;
 				
-				var x_shift = lines_x[hh+i];	//	ex lines
+				s.addEventListener('click', function(){
+					 chapter.show(this);
+				}, false);
+				
+				scrollMe.appendChild(s);
+			
+			}
+			
+			resizeCanvas();
+		
+		}
+		
+		var chapter = {
+			
+			text: {
+				
+					irritations: "Nun ist sie eingereicht: die Völkerrechtsinitiative, mit der die SVP den Vorrang der Bundesverfassung vor Völkerrecht festschreiben will. Die Schweiz soll internationale Abkommen neu aushandeln oder kündigen müssen, wenn eine widersprechende Bestimmung per Volksinitiative in die Verfassung geschrieben wird. Zudem soll das Bundesgericht Abkommen, die im Widerspruch zur Verfassung stehen, nur noch anwenden dürfen, wenn sie dem Referendum unterstanden.<br/><br/>Die SVP reagiert mit ihrer Initiative auf Entwicklungen in der Rechtsprechung des Bundesgerichts. Dieses räumte in jüngeren Entscheiden den Individualgarantien der Europäischen Menschenrechtskonvention (EMRK) und den Rechten, die EU-Bürger aus dem Personenfreizügigkeitsabkommen ableiten können, den Vorrang vor Volks- und Parlamentsentscheiden ein. Darüber hinaus konfrontiert die SVP mit ihrer Initiative aber auch eine Entwicklung hin zu einer zunehmend internationalisierten Rechtsetzung und Rechtsprechung. Dieser ist ein gewisses Demokratiedefizit nicht abzusprechen – das zeigt auch die linke Kritik an Freihandelsabkommen.<br/><br/>Dennoch sollte nicht vergessen gehen, dass die SVP mit ihrer Initiative eine klare Agenda verfolgt. Sie will Begehren wie die Ausschaffung krimineller Ausländer kompromisslos durchsetzen und sich weder durch die Grundrechte der Bundesverfassung noch durch Garantien der EMRK bremsen lassen.<br/><br/>Zudem lässt sich durch eine Verfassungsänderung die Tatsache nicht aus der Welt schaffen, dass sich die Schweiz per Vertrag zur Respektierung von Personenfreizügigkeit und EMRK verpflichtet hat. Die SVP sagt offen, dass sie eine Kündigung der EMRK in Kauf nimmt, verspricht gleichzeitig aber, dass es nicht so weit kommen werde. Das erinnert an das Versprechen, das die SVP vor der Zuwanderungsinitiative abgab: Die Zuwanderung liesse sich reduzieren, ohne die bilateralen Verträge zu gefährden. Davon ist heute keine Rede mehr. Die Prognose erscheint deshalb nicht gewagt: Ein Ja zur Völkerrechtsinitiative würde für jahrelange Diskussionen sorgen, hohe Rechtsunsicherheit schaffen – und am Ende mehr Probleme schaffen als lösen.",
+				
+					code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage.",
 					
-				var c = this.giveMeC(x_shift,w,canvArrow.width);
+					jobs: "Some webpages i have done.",
+					
+					other_objects: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel.",
+					
+					about_me: "As a big lover of music i go frequently to festivals as the Montreux Jazz and other. Live is hard, but the nights are long. Salsa and other latin Music are my favorites if i had to choose witch sounds i take along with me to the lonley island. Read more about me in my <a href='cv.pdf' target='_blank' >curriculum vitae</a>.",
+					
+					botanic: "Beside my interests for programming i have a big interest in botanics. These brings me to botanic gardens all over the world. In this case it was the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how out of time and abondonaded.",
+					
+					contact: "David Abotsi&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Untereyfeldweg 7&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;3063 Ittigen Berne&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Switzerland&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;+41 31 921 24 52&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;<a href='mailto:david@abotsi.com'>david@abotsi.com</a>"
+					
+					},
+			
+			old_c: '',
+			
+			show: function(t){
 				
+				if(this.old_c != ''){imageMe.classList.remove(this.old_c);}
+				
+				var cl = t.innerHTML;
+				
+				imageMe.classList.add(cl);
+				
+				bottomMe.innerHTML = this.text[cl];
+				
+				bottomMe.scrollIntoView({block: "start", behavior: "smooth"});
+				
+				this.old_c = cl;
+			
+			}
+			
+		};
+		
+		var dlg = {
+		
+			
+			draw_all: function(w,h){
+				
+				dlg.wh_store = [w,h];
+		
+				var ctx = canvArrow.getContext("2d");
+					
+				ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
+		
+				this.draw_center_x(w,h,ctx);
+						
+			},
+			
+			draw_center_x: function(w,h,ctx){
+				
+				ctx.globalCompositeOperation='source-over';
+			
+				ctx.beginPath();
+				
+				ctx.fillStyle = "#fff";
+		
+				var hh = parseInt((w-1-this.indent_x) / 50);
+		
+				for(var i = 0; i < 2; i++){
+					
+					var x_shift = lines_x[hh+i];
+						
+					var c = this.giveMeC(x_shift,w,canvArrow.width);
+					
 					if(i == 1){
 					
-						ctx.moveTo(x_shift - 50, 0);
+						ctx.lineTo(x_shift - 50, 0);
 						
 						ctx.lineTo(x_shift, 0);
 					
@@ -231,7 +244,7 @@ var dlg = {
 					
 					}
 						
-						ctx.lineTo(x_shift, h - this.dw_param[2]);
+					ctx.lineTo(x_shift, h - this.dw_param[2]);
 				
 					ctx.bezierCurveTo(
 											x_shift, h - this.dw_param[1], 
@@ -252,43 +265,47 @@ var dlg = {
 						ctx.lineTo(x_shift + 50, canvArrow.height);
 					
 					}
-				
-			}
-			
-		ctx.fill();
-
-		ctx.closePath();
-		
-		ctx.globalCompositeOperation='destination-in';
-		
-		this.draw_center_y(w,h,ctx);
-				
-	},
-	
-	draw_center_y: function(w,h,ctx){
-		
-		ctx.beginPath();
-
-		var hh = parseInt((h-1) / 50);
-
-			for(var i = 0; i < 2; i++){
-				
-				var y_shift = lines_y[hh+i];	//	ex lines
 					
-			var c = this.giveMeC(y_shift,h,canvArrow.height);
+				}
+					
+				ctx.fill();
+		
+				ctx.closePath();
 				
-
+				
+				this.draw_center_y(w,h,ctx);
+						
+			},
+			
+			draw_center_y: function(w,h,ctx){
+				
+				ctx.globalCompositeOperation='destination-in';
+				
+				ctx.beginPath();
+				
+				ctx.fillStyle = "#fff";
+		
+				var hh = parseInt((h-1-this.indent_y) / 50);
+		
+				for(var i = 0; i < 2; i++){
+					
+					var y_shift = lines_y[hh+i];
+						
+					var c = this.giveMeC(y_shift,h,canvArrow.height);
+					
 					if(i == 1){
 					
-					ctx.moveTo(w - this.dw_param[2], y_shift - 50);
+					ctx.lineTo(0, y_shift - 50);
 					
-					ctx.lineTo(w - this.dw_param[2], y_shift);
+					ctx.lineTo(0, y_shift);
 					
 					}else{
 					
-					ctx.moveTo(w - this.dw_param[2], y_shift);
+					ctx.moveTo(0, y_shift);
 					
 					}
+						
+					ctx.lineTo(w - this.dw_param[2], y_shift);
 				
 					ctx.bezierCurveTo(
 											w - this.dw_param[1], y_shift, 
@@ -301,213 +318,207 @@ var dlg = {
 											w + this.dw_param[1], y_shift, 
 											w + this.dw_param[2], y_shift
 										);
+		
+					ctx.lineTo(canvArrow.width, y_shift);
 					
 					if(i == 0){
 					
-					ctx.lineTo(w + this.dw_param[2], y_shift + 50);
+					ctx.lineTo(canvArrow.width, y_shift + 50);
 					
 					}
-				
-			}
-			
-		ctx.fill();
-		ctx.closePath();
-		
-		ctx.globalCompositeOperation='xor';
-	
-		ctx.beginPath();
-
-		ctx.fillStyle = "#fff";
-		ctx.fillRect(0, 0, canvArrow.width, canvArrow.height);
-		ctx.closePath();
-	
-		ctx.globalCompositeOperation='source-over';
-		
-		this.draw_lines_x(w,h,ctx);
-				
-	},
-	
-	draw_lines_x: function(w,h,ctx){
-		
-		ctx.beginPath();
-
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '#999';
-
-			for(var i = 0; i < lines_x.length; i++){
-				
-				var x_shift = lines_x[i];
-				
-				var c = 0;
-				if(x_shift < w + cp * 0.5 && x_shift > w - cp * 0.5){
-					c = this.giveMeC(x_shift,w,canvArrow.width);
+					
 				}
+					
+				ctx.fill();
+				ctx.closePath();
 				
-				ctx.moveTo(x_shift, 0);
-				
-					ctx.lineTo(x_shift, h - this.dw_param[2]);
-				
-					ctx.bezierCurveTo(
-											x_shift, h - this.dw_param[1], 
-											x_shift + c, h - this.dw_param[0], 
-											x_shift + c, h
-										);
-				
-					ctx.bezierCurveTo(
-											x_shift + c, h + this.dw_param[0], 
-											x_shift, h + this.dw_param[1], 
-											x_shift, h + this.dw_param[2]
-										);
+				ctx.globalCompositeOperation='xor';
 			
-				ctx.lineTo(x_shift, canvArrow.height);
+				ctx.beginPath();
+		
+				ctx.fillStyle = "#fff";
+				ctx.fillRect(0, 0, canvArrow.width, canvArrow.height);
+				ctx.closePath();
 				
+				ctx.globalCompositeOperation='source-over';
+				
+				this.draw_lines_x(w,h,ctx);
+						
+			},
+			
+			draw_lines_x: function(w,h,ctx){
+				
+				ctx.beginPath();
+		
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = '#999';
+		
+					for(var i = 0; i < lines_x.length; i++){
+						
+						var x_shift = lines_x[i];
+						
+						var c = 0;
+						if(x_shift < w + cp * 0.5 && x_shift > w - cp * 0.5){
+							c = this.giveMeC(x_shift,w,canvArrow.width);
+						}
+						
+						ctx.moveTo(x_shift, 0);
+						
+							ctx.lineTo(x_shift, h - this.dw_param[2]);
+						
+							ctx.bezierCurveTo(
+													x_shift, h - this.dw_param[1], 
+													x_shift + c, h - this.dw_param[0], 
+													x_shift + c, h
+												);
+						
+							ctx.bezierCurveTo(
+													x_shift + c, h + this.dw_param[0], 
+													x_shift, h + this.dw_param[1], 
+													x_shift, h + this.dw_param[2]
+												);
+					
+						ctx.lineTo(x_shift, canvArrow.height);
+						
+					}
+					
+				ctx.stroke();
+				ctx.closePath();
+					
+				
+				this.draw_lines_y(w,h,ctx);
+						
+			},
+			
+			draw_lines_y: function(w,h,ctx){
+				
+				ctx.beginPath();
+		
+				for(var i = 0; i < lines_y.length; i++){
+					
+					var y_shift = lines_y[i];
+					
+					var c = 0;
+					
+					if(y_shift < h + cp * 0.5 && y_shift > h - cp * 0.5){
+						c = this.giveMeC(y_shift,h,canvArrow.height);
+					}
+					
+					ctx.moveTo(0, y_shift);
+					
+						ctx.lineTo(w - this.dw_param[2], y_shift);
+					
+						ctx.bezierCurveTo(
+												w - this.dw_param[1], y_shift, 
+												w - this.dw_param[0], y_shift + c, 
+												w, y_shift + c
+											);
+					
+						ctx.bezierCurveTo(
+												w + this.dw_param[0], y_shift + c, 
+												w + this.dw_param[1], y_shift, 
+												w + this.dw_param[2], y_shift
+											);
+				
+					ctx.lineTo(canvArrow.width, y_shift);
+					
+				}
+					
+				ctx.stroke();
+				ctx.closePath();
+			},
+			
+			
+			wh_store: [0,0],
+			
+			dw_param: [200,300,500],
+			
+			spherize: 3,
+			
+			
+			giveMeC: function(s,p,o){
+					
+				var diff = p - s;
+				
+				if(diff > 0){
+					return (diff - cp * 0.5) / dlg.spherize;
+				}
+					
+				return (diff + cp * 0.5) / dlg.spherize;
+				
+			},
+			
+			eye_scroll: function(p){
+						
+					canvArrow.style.cursor = (p > 20) ? 'default' : 'pointer';
+				
+					if(p < 3){
+						
+						p = 3;
+						
+						}
+				
+					if(p > 300){
+						
+						p = 300;
+						
+						}
+					
+					dlg.spherize = p;
+											  
+					dlg.draw_all(dlg.wh_store[0], dlg.wh_store[1]);
+			
 			}
 			
-		ctx.stroke();
-		ctx.closePath();
-			
+		};
 		
-		this.draw_lines_y(w,h,ctx);
+		document.addEventListener('DOMContentLoaded', page_load, false);
+		
+		window.addEventListener('mousemove', function(e){
+			dlg.draw_all(e.clientX,e.clientY);
+		}, false);
+		
+		window.addEventListener('scroll', function(e){
+			dlg.eye_scroll(300 - window.pageYOffset);
+		}, false);
+		
+		
+		
+		window.addEventListener('resize', pre_resizeCanvas, false);
+		
+		
 				
-	},
-	
-	draw_lines_y: function(w,h,ctx){
+		function pre_resizeCanvas() {
 		
-		ctx.beginPath();
-
-		for(var i = 0; i < lines_y.length; i++){
+			clearTimeout(resizeId);
+				
+			resizeId = setTimeout(function(){
+										   
+				resizeCanvas();
 			
-			var y_shift = lines_y[i];
-			
-			var c = 0;
-			
-			if(y_shift < h + cp * 0.5 && y_shift > h - cp * 0.5){
-				c = this.giveMeC(y_shift,h,canvArrow.height);
-			}
-			
-			ctx.moveTo(0, y_shift);
-			
-				ctx.lineTo(w - this.dw_param[2], y_shift);
-			
-				ctx.bezierCurveTo(
-										w - this.dw_param[1], y_shift, 
-										w - this.dw_param[0], y_shift + c, 
-										w, y_shift + c
-									);
-			
-				ctx.bezierCurveTo(
-										w + this.dw_param[0], y_shift + c, 
-										w + this.dw_param[1], y_shift, 
-										w + this.dw_param[2], y_shift
-									);
-		
-			ctx.lineTo(canvArrow.width, y_shift);
+			}, 200);
 			
 		}
-			
-		ctx.stroke();
-		ctx.closePath();
-	},
-	
-	
-	wh_store: [],
-	
-	dw_param: [300,300,600],
-	
-	spherize: 3,
-	
-	
-	giveMeC: function(s,p,o){
-			
-		var diff = p - s;
+							  
 		
-		if(diff > 0){
-			return (diff - cp * 0.5) / dlg.spherize;
-		}
-			
-		return (diff + cp * 0.5) / dlg.spherize;
-		
-	},
-	
-	allow_pneu: false,
-	
-	eye_pneu: function(w,h,d){
-		
-		clearInterval(pneuId);
-		
-		var counter = 0;
-
-		dlg.wh_store = [w,h];
-		
-		var steps = [1032,520,264,136,72,40,24,16,12,9,7,5];
-		
-		if(d != 0){steps.reverse();}
-		
-		pneuId = window.setInterval(function(){
-			
-			dlg.spherize = steps[counter];
-									  
-			dlg.draw_all(dlg.wh_store[0], dlg.wh_store[1]);
-			
-			counter++;
-			
-			if(counter > 11){
-				clearInterval(pneuId);
-				allow_pneu = false;
-			}
-			
-		}, 20);
-		
-	},
-	
-	eye_scroll: function(p){
-		
-			if(p < 3){p = 3;}
-		
-			if(p > 300){p = 300;}
-			
-			dlg.spherize = p;
-									  
-			dlg.draw_all(dlg.wh_store[0], dlg.wh_store[1]);
-	
-	}
-	
-};
-
-document.addEventListener('DOMContentLoaded', page_load, false);
-
-window.addEventListener('mousemove', function(e){
-	//dlg.allow_pneu = false;
-	//clearInterval(pneuId);
-	dlg.draw_all(e.clientX,e.clientY);
-}, false);
-											  /*
-
-window.addEventListener('mouseup', function(e){
-	dlg.allow_pneu = true;
-	dlg.eye_pneu(e.clientX,e.clientY,1);
-}, false);
-											  */
-
-window.addEventListener('scroll', function(e){
-	/*
-	console.log(window.pageYOffset);
-	console.log(e.pageY);
-	*/
-	dlg.eye_scroll(300 - window.pageYOffset);
-}, false);
-
-        window.addEventListener('resize', resizeCanvas, false);
-        
-        function resizeCanvas() {
-                canvArrow.width = window.innerWidth;
-                canvArrow.height = window.innerHeight;
 				
-				for(var i = 0; i < canvArrow.width; i+=50){
+				
+		function resizeCanvas() {
+				
+				lines_x = [];
+				lines_y = [];
+			
+				canvArrow.width = window.innerWidth;
+				canvArrow.height = window.innerHeight;
+				
+				dlg.indent_x = parseInt((canvArrow.width % 50) / 2);
+				dlg.indent_y = parseInt((canvArrow.height % 50) / 2);
+				
+				for(var i = dlg.indent_x; i < canvArrow.width; i+=50){
 					lines_x.push(i);
 				}
 				
-				for(var i = 0; i < canvArrow.height; i+=50){
+				for(var i = dlg.indent_y; i < canvArrow.height; i+=50){
 					lines_y.push(i);
 				}
 				
@@ -515,33 +526,54 @@ window.addEventListener('scroll', function(e){
 				
 				dlg.spherize = cp;
 				
-				document.getElementById("scrollme").style.height = imageMe.style.height = window.innerHeight + 300 + 'px';
-                
-                /**
-                 * Your drawings need to be inside this function otherwise they will be reset when 
-                 * you resize the browser window and the canvas goes will be cleared.
-                 */
-                //drawStuff(); 
-        }
+				scrollMe.style.height = imageMe.style.height = window.innerHeight + 300 + 'px';
+				
+				titleMe.style.margin = '0 ' + parseInt(50 + dlg.indent_x) + 'px';
+				
+				titleMe.style.top = parseInt(100 + dlg.indent_y) + 'px';
+				
+				titleMe.style.width = parseInt(canvArrow.width - 100 - dlg.indent_x * 2) + 'px';
 		
+				for(var i = 0; i < chapterLinks.length; i++){
+					
+					chapterLinks[i].style.top = titleMe.style.top;
+					
+					if(i > 0){
+						
+						if(chapterLinks[i-1].getBoundingClientRect().top < chapterLinks[i].getBoundingClientRect().top){
+					
+							chapterLinks[i].style.marginLeft = parseInt(50 + dlg.indent_x) + 'px';
+						
+						}else{
+					
+							chapterLinks[i].style.marginLeft = 50 + 'px';
+						
+						}
+					
+					}
+					
+				}
+				
+				chapterLinks[0].style.marginLeft = parseInt(50 + dlg.indent_x) + 'px';
+				
+				dlg.draw_all(canvArrow.width * 0.5, canvArrow.height * 0.5);
+		
+		}
+				
+	</script>
 
-    </script>
-
-      
-    
-       
 <head> 
    
 <body>
-<div id="imageme">
-</div>
-<canvas id="arrow_Canvas"></canvas>
-<div id="scrollme">
-	<div id="topme"></div>
-	<div id="bottomme"></div>
-</div>
-<div id="titleme">
-	david abotsi | vanilla js programming
-</div>
+    <div id="imageme">
+    </div>
+    <canvas id="arrow_Canvas"></canvas>
+    <div id="scrollme">
+        <div id="topme"></div>
+        <div id="bottomme"></div>
+    </div>
+    <div id="titleme">
+        david abotsi | vanilla js programming
+    </div>
 </body>
 </html>

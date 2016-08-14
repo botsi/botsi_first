@@ -16,22 +16,37 @@
 			font-family:Arial, Helvetica, sans-serif;
 		}
 		.irritations {
-			background: url("images/bg_gray_photo.jpg") no-repeat fixed center center / cover ;
+			background: url("images/bg_irritations.jpg") no-repeat fixed center center / cover ;
 		}
 		.code_example {
 			background: url("images/code_example.jpg") no-repeat fixed center center / cover ;
 		}
 		.jobs {
-			background: url("images/bg_works.jpg") no-repeat fixed center center / cover ;
+			background:
+url("images/bg_job_abo.jpg") no-repeat fixed 1% 20%,
+url("images/bg_job_gua.jpg") no-repeat fixed center 20%,
+url("images/bg_job_bod.jpg") no-repeat fixed 99% 20%,
+url("images/bg_job_zae.jpg") no-repeat fixed 1% 80%,
+url("images/bg_job_sil.jpg") no-repeat fixed center 80%,
+url("images/bg_job_vie.jpg") no-repeat fixed 99% 80%;
+
+background-size: 32% auto;
+
 		}
 		.other_objects {
-			background: url("images/bg_ceramique_photo.jpg") no-repeat fixed center center / cover ;
+			background:
+url("http://www.abotsi.com/2/big/4.jpg") no-repeat fixed 1% 20%,
+url("http://www.abotsi.com/2/big/12.jpg") no-repeat fixed center 20%,
+url("http://www.abotsi.com/2/big/6.jpg") no-repeat fixed 99% 20%,
+url("http://www.abotsi.com/2/big/24.jpg") no-repeat fixed 1% 80%,
+url("http://www.abotsi.com/2/big/5.jpg") no-repeat fixed center 80%,
+url("http://www.abotsi.com/2/big/16.jpg") no-repeat fixed 99% 80%;
+
+background-size: 32% auto;
+
 		}
 		.about_me {
 			background: url("images/bg_mecolored.jpg") no-repeat fixed center center / cover ;
-		}
-		.botanic {
-			background: url("images/bg_tree.jpg") no-repeat fixed center center / cover ;
 		}
 		.contact {
 			background: url("images/bg_contact.jpg") no-repeat fixed center center / cover ;
@@ -131,7 +146,7 @@
 		var lines_x, lines_y;
 		
 		var ext_link_text = {
-			jobs:['abotsi.com','guarani.gallery','ilsorriso.ch','zaehringerhof.ch','silviabonafe.com','viernesazul.ch'],
+			jobs:['abotsi.com','guarani.gallery','boday-it.ch','zaehringerhof.ch','silviabonafe.com','viernesazul.ch'],
 			other_objects:['abotsi.com','abotsi.com','abotsi.com','abotsi.com','abotsi.com','abotsi.com']
 		};
 		
@@ -183,10 +198,6 @@
 				
 				if(imageMe.className == 'jobs' || imageMe.className == 'other_objects' || imageMe.className == 'contact'){
 					
-					//console.log(e.clientX);
-					
-					//var p = [e.clientX,e.clientY];
-					
 					chapter.query_switch(imageMe.className);
 				
 				}else{
@@ -195,6 +206,11 @@
 				
 				};
 				 
+			}, false);
+					
+			canvArrow.addEventListener('mouseover', function(){
+				chapter.switchme_allow = false;
+				//console.log('mememe');
 			}, false);
 		
 			titleMe.addEventListener('click', go_top, false);
@@ -216,6 +232,8 @@
 			}
 			
 			resizeCanvas();
+			
+			go_top();
 		
 		}
 		
@@ -223,17 +241,15 @@
 			
 			text: {
 				
-					irritations: "Nun ist sie eingereicht: die Völkerrechtsinitiative, mit der die SVP den Vorrang der Bundesverfassung vor Völkerrecht festschreiben will. Die Schweiz soll internationale Abkommen neu aushandeln oder kündigen müssen, wenn eine widersprechende Bestimmung per Volksinitiative in die Verfassung geschrieben wird. Zudem soll das Bundesgericht Abkommen, die im Widerspruch zur Verfassung stehen, nur noch anwenden dürfen, wenn sie dem Referendum unterstanden.<br/><br/>Die SVP reagiert mit ihrer Initiative auf Entwicklungen in der Rechtsprechung des Bundesgerichts. Dieses räumte in jüngeren Entscheiden den Individualgarantien der Europäischen Menschenrechtskonvention (EMRK) und den Rechten, die EU-Bürger aus dem Personenfreizügigkeitsabkommen ableiten können, den Vorrang vor Volks- und Parlamentsentscheiden ein. Darüber hinaus konfrontiert die SVP mit ihrer Initiative aber auch eine Entwicklung hin zu einer zunehmend internationalisierten Rechtsetzung und Rechtsprechung. Dieser ist ein gewisses Demokratiedefizit nicht abzusprechen – das zeigt auch die linke Kritik an Freihandelsabkommen.<br/><br/>Dennoch sollte nicht vergessen gehen, dass die SVP mit ihrer Initiative eine klare Agenda verfolgt. Sie will Begehren wie die Ausschaffung krimineller Ausländer kompromisslos durchsetzen und sich weder durch die Grundrechte der Bundesverfassung noch durch Garantien der EMRK bremsen lassen.<br/><br/>Zudem lässt sich durch eine Verfassungsänderung die Tatsache nicht aus der Welt schaffen, dass sich die Schweiz per Vertrag zur Respektierung von Personenfreizügigkeit und EMRK verpflichtet hat. Die SVP sagt offen, dass sie eine Kündigung der EMRK in Kauf nimmt, verspricht gleichzeitig aber, dass es nicht so weit kommen werde. Das erinnert an das Versprechen, das die SVP vor der Zuwanderungsinitiative abgab: Die Zuwanderung liesse sich reduzieren, ohne die bilateralen Verträge zu gefährden. Davon ist heute keine Rede mehr. Die Prognose erscheint deshalb nicht gewagt: Ein Ja zur Völkerrechtsinitiative würde für jahrelange Diskussionen sorgen, hohe Rechtsunsicherheit schaffen – und am Ende mehr Probleme schaffen als lösen.",
+					irritations: "Code zu schreiben ist eine sehr spannende Beschäftigung. Man bewegt sich auf weiten Strecken durch eine Welt die einzig in der Vorstellung existiert. Recht schnell kann man grossartige Funktionen entwickeln und erstaunliche Effekte auf den Bildschirm zaubern oder aber sich in einem Gewirr von Unmöglichkeiten und stechenden Zuständen widerfinden. So schwer fassbar diese Tätigkeit ist, so präzise und zwingend sind die Regel welche sie bestimmen.<br/>Weil Computer im Gegensatz zu uns Menschen kein Problem haben sich zu organisieren stehen wir ihnen gegenüber in der Schuld uns diesem Level an Organisation anzupassen. Sprich, eine der grössten Herausforderungen besteht darin den Code übersichtlich zu halten und während des schreibens nicht zu vergessen an welcher Stelle eines Ablaufs wir uns befinden. Trotzdem gilt es der Phantasie weiter freien Lauf zu lassen und sich bewusst zu sein das im Prinzip wir die Götter des Skripts sind und grundsätzlich alles möglich ist.<br/>Javascript, offiziell nur eine Skript- und keine Programmiersprache, erfüllt alle Bedingungen die ein Einstieg in die Programmierung erfordert und ist durch ihre weite Verbreitung überall Verfügbar und zur genüge dokumentiert. Diese Sprache, als Jux auch Vanilla JS genannt besticht durch zwei Merkmale: sie ist mit dem Webbrowser verheiratet und sie ist gröstenteils frei von proprietären Rechten, gehört also dem der gerade eine Code-Zeile schreibt.<br/><br/>Nun, genug Philosophie. Das schöne an Javascript sind die Objekte, ihre relativ einfache Handhabung und die unendlichen Möglichkeiten welche sich daraus ergeben. In der Praxis, beim erstellen oder umbauen von Webseiten, eignet sich Javascript da beinahe jede gewünschte Funktion und jedes Design ausgegeben werden können.<br/><br/>Beside my interests for programming i like real live stuff like for example botanics. This brought me as visible on the background image, to the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how timed out and abondoned.",
 				
 					code_example: "Here is an example of code i have written. On the left side a part of the javascript who controlls this canvas annimation. On the right hand the css for this webpage. View more details about it at <a href='https://github.com/botsi/botsi_first' target='_blank' >GitHub</a>.",
 					
-					jobs: "Some webpages i have done.",
+					jobs: "Some webpages i have developped. Click the images to acces the sites.",
 					
-					other_objects: "Drei Tage hatte ich mir als Brasília-Frischling Zeit genommen, um den Sitz der brasilianischen Zentralmacht zu erkunden. Ich war gewappnet mit Büchern über Stararchitekt Oscar Niemeyer und die brasilianische Moderne, ich hatte ein paar Termine bei Regierungsstellen, ich freute mich auf einen ausgiebigen Stadtbummel.",
+					other_objects: "It is a great personal pleasure to introduce also my Ceramic Work to you. I am a professional Potter and maintain a Atelier in Ittigen near Berne since 1995. Click the images to visit <a href='http://abotsi.com/' target='_blank' >abotsi.com</a>.",
 					
 					about_me: "As a big lover of music i go frequently to festivals as the Montreux Jazz and other. Live is hard, but the nights are long. Salsa and other latin Music are my favorites if i had to choose witch sounds i take along with me to the lonley island. Read more about me in my <a href='../cv.pdf' target='_blank' >curriculum vitae</a>.",
-					
-					botanic: "Beside my interests for programming i have a big interest in botanics. These brings me to botanic gardens all over the world. In this case it was the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how out of time and abondonaded.",
 					
 					contact: "David Abotsi&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Untereyfeldweg 7&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;3063 Ittigen Berne&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Switzerland&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;+41 31 921 24 52&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;<a href='mailto:david@abotsi.com'>david@abotsi.com</a>"
 					
@@ -257,6 +273,10 @@
 			
 			},
 			
+			switchme_op: 1,
+			
+			switchme_allow: false,
+			
 			query_switch: function(sh,p){
 				
 				if(sh != 0){
@@ -271,7 +291,7 @@
 							
 					if(sh == 'contact'){
 					
-						ih = ih + 'www.google.ch';
+						ih = ih + 'maps.google.com';
 					
 					}
 							
@@ -332,6 +352,8 @@
 					d.innerHTML = '<span onclick="chapter.query_switch(0);open_ext(this)">' + ih + '</span><hr/>or <span onclick="chapter.query_switch(0);go_top();">back to main menu</span>';
 					
 					scrollMe.appendChild(d);
+					
+					chapter.switchme_allow = true;
 				
 					d.style.left = dlg.wh_store[0] - 100 + 'px';
 				
@@ -351,11 +373,31 @@
 		
 		var dlg = {
 		
-			
 			draw_all: function(w,h){
 				
 				dlg.wh_store = [w,h];
-		
+							
+					if(document.getElementById('switchme') && chapter.switchme_allow == false){
+					
+						chapter.switchme_op -= 0.01;
+						
+						if(chapter.switchme_op <= 0){
+					
+							scrollMe.removeChild(document.getElementById('switchme'));
+							
+							chapter.switchme_op = 1;
+							
+							chapter.switchme_allow = false;
+					
+						}else{
+						
+							document.getElementById('switchme').style.opacity = chapter.switchme_op;
+							
+						}
+					
+					}
+
+
 				var ctx = canvArrow.getContext("2d");
 					
 				ctx.clearRect(0, 0, canvArrow.width, canvArrow.height);
@@ -742,7 +784,7 @@
         <div id="bottomme"></div>
     </div>
     <div id="titleme">
-        david abotsi | vanilla js programming
+        david abotsi&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;vanilla javascript programming
     </div>
 </body>
 </html>

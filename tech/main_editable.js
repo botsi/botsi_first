@@ -39,7 +39,7 @@
 				
 				imageMe.innerHTML = '<div></div>' + display_code(chapter.text.view_code.objs[chapter.text.view_code.count]);
 				
-				bottomMe.innerHTML = chapter.text.view_code.url_epi[chapter.text.view_code.count] + chapter.text.view_code.ih;
+				bottomMe.innerHTML = parseInt(chapter.text.view_code.count + 1) + '/' + chapter.text.view_code.url_epi.length + ' ' + chapter.text.view_code.url_epi[chapter.text.view_code.count] + chapter.text.view_code.ih;
 			
 		}
 		
@@ -177,8 +177,8 @@
 																									
 				imageMe.innerHTML = (cl != 'view_code') ? '' : '<div></div>' + display_code(this.text.view_code.objs[this.text.view_code.count]);
 				
-				bottomMe.innerHTML = (cl != 'view_code') ? this.text[cl].ih : this.text.view_code.url_epi[this.text.view_code.count] + this.text.view_code.ih;
-				
+				bottomMe.innerHTML = (cl != 'view_code') ? this.text[cl].ih : parseInt(this.text.view_code.count + 1) + '/' + this.text.view_code.url_epi.length + ' ' + this.text.view_code.url_epi[this.text.view_code.count] + this.text.view_code.ih;
+
 				if(cl == 'about_me'){
 
 					bottomMe.style.cssText = 'bottom:auto;height:100%;background:none;box-shadow:none;';

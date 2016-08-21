@@ -5,7 +5,10 @@
 	"view_code": {
 		"prelink":"view ",
 		"url":["next object"],
-		"url_epi":["The background shows a part of the javascript who draws this canvas annimation. ","This is the object who generates the site navigation. ","This object arranges some stuff when the page is loaded. Most important: it gets all text displayed on this page who is stored in two external files. "],
+		"url_epi":[
+			"The background shows a part of the javascript who draws this canvas annimation. Click the code to see the next object. ",
+			"This is the object who generates the site navigation. ",
+			"This object arranges some stuff when the page is loaded. Most important: it gets all text displayed on this page who is stored in two external files. "],
 		"ih":"View more details about it at <a href='https://github.com/botsi/botsi_first' target='_blank' >GitHub</a>."
 	},
 	"jobs": {
@@ -18,7 +21,7 @@
 		"prelink":"view on ",
 		"url":["abotsi.com","abotsi.com","abotsi.com","abotsi.com","abotsi.com","abotsi.com"],
 		"url_epi":["/?objects","/?objects","/?objects","/?objects","/?objects","/?objects"],
-		"ih":"It is a great personal pleasure to introduce also my Ceramic Work to you. I am a professional Potter and maintain a Atelier in Ittigen near Berne since 1995. Click the images to visit <a href='http://abotsi.com/' target='_blank' >abotsi.com</a>."
+		"ih":"It is a great personal pleasure to introduce also my Ceramic Work to you. I am also a professional Potter and maintain a Atelier in Ittigen near Berne since 1995. Click the images to visit <a href='http://abotsi.com/' target='_blank' >abotsi.com</a>."
 	},
 	"about_me": {
 	

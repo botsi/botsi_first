@@ -24,6 +24,8 @@
 				window.open('http://' + u,'_blank');
 				
 			}else{
+				
+				chapter.text.view_code.count++;
 			
 				cycle_in_view_code();
 			
@@ -33,9 +35,9 @@
 		
 		function cycle_in_view_code() {
 				
-				chapter.text.view_code.count++;
-				
 				if(chapter.text.view_code.count > chapter.text.view_code.url_epi.length - 1){chapter.text.view_code.count = 0}
+				
+				if(chapter.text.view_code.count < 0){chapter.text.view_code.count = chapter.text.view_code.url_epi.length - 1}
 				
 				imageMe.innerHTML = '<div></div>' + display_code(chapter.text.view_code.objs[chapter.text.view_code.count]);
 				
@@ -590,6 +592,8 @@
 				dlg.draw_all(e.clientX,e.clientY);
 				
 			}, false);
+			
+			window.addEventListener("keydown", arrow, false);
 		
 		}
 		
@@ -672,4 +676,30 @@
 			
 			dlg.draw_all(canvArrow.width * 0.5, canvArrow.height * 0.5);
 		
+		}
+		
+		function arrow(e) {
+			
+			if(imageMe.classList[0] != 'view_code'){return;};
+			
+			if (!e){
+			  e = window.event;
+			}
+			  
+			if (e.keyCode == 37){
+				
+				chapter.text.view_code.count--;
+				
+				cycle_in_view_code();
+			
+			}
+			  
+			if (e.keyCode == 39){
+				
+				chapter.text.view_code.count++;
+				
+				cycle_in_view_code();
+				
+			}
+						
 		}

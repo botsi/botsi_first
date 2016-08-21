@@ -6,7 +6,7 @@
 		"prelink":"view ",
 		"url":["next object"],
 		"url_epi":[
-			"The background shows a part of the javascript who draws this canvas annimation. Click the code to see the next object. ",
+			"The background shows a part of the javascript who draws this canvas annimation. Click the code or use arrow left/right keys to see the next object. ",
 			"This is the object who generates the site navigation. ",
 			"This object arranges some stuff when the page is loaded. Most important: it gets all text displayed on this page who is stored in two external files. "],
 		"ih":"View more details about it at <a href='https://github.com/botsi/botsi_first' target='_blank' >GitHub</a>."

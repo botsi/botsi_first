@@ -15,7 +15,7 @@
 		"prelink":"go to ",
 		"url":["abotsi.com","guarani.gallery","boday-it.ch","zaehringerhof.ch","silviabonafe.com","viernesazul.ch"],
 		"url_epi":["","","","","",""],
-		"ih":"Some webpages i have developed. Click the images to acces the sites. If you need a cool website, a update of your existing one or have a problem relate to your javascript feel free to contact me."
+		"ih":"Some webpages i have developed. Click the images to acces the sites. If you need a cool website, a update of your existing one or have a problem relate to your javascript feel free to <a href='mailto:david@abotsi.com'>contact</a> me."
 	},
 	"other_objects": {
 		"prelink":"view on ",

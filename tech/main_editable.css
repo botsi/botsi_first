@@ -36,13 +36,6 @@ a:hover {
 a:active {
 	text-decoration: none;
 }
-.view_code div {
-border-left:1px solid #0f0;
-height:calc(100% - 400px);
-position:absolute;
-top:200px;
-margin-left: -16px;
-}
 .intro {
 	background: url("../images/bg_intro.jpg") no-repeat fixed center center / cover ;
 }
@@ -79,6 +72,14 @@ column-rule-width: 1px;
     -webkit-column-fill: auto; /* try */
     -moz-column-fill: auto; /* Firefox */
     column-fill: auto;
+}
+.Code_sehen div,
+.view_code div {
+border-left:1px solid #0f0;
+height:calc(100% - 400px);
+position:absolute;
+top:200px;
+margin-left: -16px;
 }
 .Arbeiten,
 .jobs {

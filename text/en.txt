@@ -1,0 +1,35 @@
+{
+	"irritations":{
+		"ih":"Code zu schreiben ist eine sehr spannende Beschäftigung. Man bewegt sich auf weiten Strecken durch eine Welt die einzig in der Vorstellung existiert. Recht schnell kann man grossartige Funktionen entwickeln und erstaunliche Effekte auf den Bildschirm zaubern oder aber sich in einem Gewirr von Unmöglichkeiten und stechenden Zuständen widerfinden. So schwer fassbar diese Tätigkeit ist, so präzise und zwingend sind die Regel welche sie bestimmen.<br/>Weil Computer im Gegensatz zu uns Menschen kein Problem haben sich zu organisieren sind wir ihnen gegenüber verpflichtet uns diesem Level an Organisation anzupassen. Eine der grössten Herausforderungen besteht darin den Code übersichtlich zu halten und während des schreibens nicht zu vergessen an welcher Stelle eines Ablaufs wir uns befinden. Trotzdem gilt es der Phantasie weiter freien Lauf zu lassen und sich bewusst zu sein das im Prinzip wir die Götter des Skripts sind und grundsätzlich alles möglich ist.<br/>Javascript, offiziell nur eine Skript- und keine Programmiersprache, erfüllt alle Bedingungen die ein Einstieg in die Programmierung erfordert und ist durch ihre weite Verbreitung überall Verfügbar und zur genüge dokumentiert. Diese Sprache, als Jux auch Vanilla JS genannt besticht durch zwei Merkmale: sie ist mit dem Webbrowser verheiratet und sie ist gröstenteils frei von proprietären Rechten, gehört also dem der gerade eine Code-Zeile schreibt.<br/><br/>Nun, genug Philosophie. Das schöne an Javascript sind die Objekte, ihre relativ einfache Handhabung und die unendlichen Möglichkeiten welche sich daraus ergeben. In der Praxis, beim erstellen oder umbauen von Webseiten, eignet sich Javascript da beinahe jede gewünschte Funktion und jedes Design ausgegeben werden können.<br/><br/>Beside my interests for programming i like real live stuff like for example botanics. This brought me as visible on the background image, to the botanic garden at Lisbon. Very nice, mostly because of his appearance to be some how timed out and abondoned."
+	},
+	"view_code": {
+		"prelink":"view ",
+		"url":["next object"],
+		"url_epi":[
+			"The background shows a part of the code who draws this canvas annimation. Click inside it or use arrow left/right keys to see the next object. ",
+			"This is the object who generates the site navigation and the popup links. ",
+			"This one arranges things when the page is loaded. Most important: it calls two external files which contains all text displayed on the page. "],
+		"ih":"View more details about it on <a href='https://github.com/botsi/botsi_first' target='_blank' >GitHub</a>."
+	},
+	"jobs": {
+		"prelink":"go to ",
+		"url":["abotsi.com","guarani.gallery","boday-it.ch","zaehringerhof.ch","silviabonafe.com","viernesazul.ch"],
+		"url_epi":["","","","","",""],
+		"ih":"Some webpages i have developed. Click the images to acces the sites. If you need a cool website, a update of your existing one or have a problem relate to your javascript feel free to contact me."
+	},
+	"other_objects": {
+		"prelink":"view on ",
+		"url":["abotsi.com","abotsi.com","abotsi.com","abotsi.com","abotsi.com","abotsi.com"],
+		"url_epi":["/?14","/?112","/?16","/?124","/?15","/?116"],
+		"ih":"It is a great personal pleasure to introduce also my Ceramic Work to you. I am a professional Potter and maintain a Atelier in Ittigen near Berne since 1995. Click the images to visit <a href='http://abotsi.com/' target='_blank' >abotsi.com</a>."
+	},
+	"about_me": {
+	
+	},
+	"contact": {
+		"prelink":"find me on ",
+		"url":["maps.google.com"],
+		"url_epi":["/maps/place/Abotsi+C%C3%A9ramique+Keramikatelier/@46.9735665,7.4743263,15z/data=!4m5!3m4!1s0x0:0x1037fc2174584456!8m2!3d46.9735665!4d7.4743263"],
+		"ih":"David Abotsi&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Untereyfeldweg 7&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;3063 Ittigen Berne&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Switzerland&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;+41 31 921 24 52&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;<a href='mailto:david@abotsi.com'>david@abotsi.com</a>"
+	}
+}

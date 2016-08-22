@@ -46,9 +46,11 @@ margin-left: -16px;
 .intro {
 	background: url("../images/bg_intro.jpg") no-repeat fixed center center / cover ;
 }
+.Irritationen,
 .irritations {
 	background: url("../images/bg_irritations.jpg") no-repeat fixed center center / cover ;
 }
+.Code_sehen,
 .view_code {
 	background: #111 ;
 	font-family: 'Source Code Pro', monospace;
@@ -78,6 +80,7 @@ column-rule-width: 1px;
     -moz-column-fill: auto; /* Firefox */
     column-fill: auto;
 }
+.Arbeiten,
 .jobs {
 	background:
 		url("../images/bg_job_abo.jpg") no-repeat fixed 75px 200px,
@@ -91,6 +94,7 @@ column-rule-width: 1px;
 	background-size: calc(30% - 50px) auto;
 
 }
+.andere_Objekte,
 .other_objects {
 	background:
 		url("http://www.abotsi.com/2/big/4.jpg") no-repeat fixed 75px 200px,
@@ -104,9 +108,11 @@ column-rule-width: 1px;
 	background-size: calc(30% - 50px) auto;
 
 }
+.über_mich,
 .about_me {
 	background: url("../images/bg_mecolored2.jpg") no-repeat fixed center center / cover ;
 }
+.Kontakt,
 .contact {
 	background: url("../images/bg_tc_map.jpg") no-repeat fixed center center / cover ;
 	/*
@@ -196,6 +202,12 @@ column-rule-width: 1px;
 	color:#fff;
 	font-size:18px;
 	cursor:pointer;
+}
+#titleme span {
+	font-size:14px;
+	float:right;
+    position: absolute;
+    right: 24px;
 }
 #cv_table {
 	border: 0 none;

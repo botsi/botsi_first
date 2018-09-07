@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+	<title>test</title>
+	</head>
+<body>
+	hallo, some text
+<div id="mydiv"></div>
+	<script>
+	let mydiv = document.getElementById('mydiv')
+	let meetballs = {
+		const: 5,
+		withDiscount: function(){
+			return this.const -2;
+		}
+	};
+
+	var tempObj = {
+		_num: 22,
+		set num(numIn){
+			this._num = numIn;
+		}
+		/*
+		set num(numIn){
+			_num = numIn;
+		}
+		*/
+	};
+	tempObj.num = 25;
+	//console.log(meetballs.withDiscount());
+	//mydiv.innerHTML = meetballs.withDiscount();
+	mydiv.innerHTML = tempObj._num;
+	</script>
+	</body>
+</html>

@@ -30,6 +30,6 @@
 		"prelink":"find me on ",
 		"url":["maps.google.com"],
 		"url_epi":["/maps/place/Abotsi+C%C3%A9ramique+Keramikatelier/@46.9735665,7.4743263,15z/data=!4m5!3m4!1s0x0:0x1037fc2174584456!8m2!3d46.9735665!4d7.4743263"],
-		"ih":"David Abotsi&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Untereyfeldweg 7&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;3063 Ittigen Berne&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Switzerland&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;+41 31 921 24 52&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;<a href='mailto:david@abotsi.com'>david@abotsi.com</a>"
+		"ih":"David Abotsi&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Untereyfeldweg 7&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;3063 Ittigen Berne&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;Switzerland&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;+41 31 921 24 52&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;<a href='mailto:david@abotsi.com'>david@abotsi.com</a>&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;<a target='_self' href='node_chat.html'>Chat</a>"
 	}
 }

@@ -95,6 +95,7 @@ margin-left: -16px;
 	background-size: calc(30% - 50px) auto;
 
 }
+
 .andere_Objekte,
 .other_objects {
 	background:
@@ -107,6 +108,44 @@ margin-left: -16px;
 		;
 
 	background-size: calc(30% - 50px) auto;
+
+}
+
+@media all and (max-width: 100vh) {
+
+	.Arbeiten,
+	.jobs {
+		background:
+			url("../images/bg_job_abo.jpg") no-repeat fixed 75px 200px,
+			url("../images/bg_job_gua.jpg") no-repeat fixed calc(100% - 75px) 200px,
+			
+			url("../images/bg_job_bod.jpg") no-repeat fixed 75px center,
+			url("../images/bg_job_zae.jpg") no-repeat fixed calc(100% - 75px) center,
+			
+			url("../images/bg_job_sil.jpg") no-repeat fixed 75px calc(100% - 200px),
+			url("../images/bg_job_vie.jpg") no-repeat fixed calc(100% - 75px) calc(100% - 200px)
+			;
+			
+		background-size: auto calc(30% - 134px);
+	
+	}
+	
+	.andere_Objekte,
+	.other_objects {
+		background:
+			url("http://www.abotsi.com/2/big/4.jpg") no-repeat fixed 75px 200px,
+			url("http://www.abotsi.com/2/big/12.jpg") no-repeat fixed calc(100% - 75px) 200px,
+			
+			url("http://www.abotsi.com/2/big/6.jpg") no-repeat fixed 75px center,
+			url("http://www.abotsi.com/2/big/24.jpg") no-repeat fixed calc(100% - 75px) center,
+			
+			url("http://www.abotsi.com/2/big/5.jpg") no-repeat fixed 75px calc(100% - 200px),
+			url("http://www.abotsi.com/2/big/16.jpg") no-repeat fixed calc(100% - 75px) calc(100% - 200px)
+			;
+	
+		background-size: auto calc(30% - 134px);
+	
+	}
 
 }
 .über_mich,
@@ -137,7 +176,6 @@ margin-left: -16px;
 #switchme {
 	position:fixed;
 	visibility: visible;
-	width:200px;
 	max-width:200px;
 	line-height:50px;
 	text-align: center;
@@ -149,6 +187,10 @@ margin-left: -16px;
 	border: 0 none;
 	cursor: pointer;
 	display: inline-block;
+}
+#switchme span {
+	display: block;
+	width:100%;
 }
 #switchme hr {
 	border:0 none;
@@ -163,18 +205,23 @@ margin-left: -16px;
 #bottomme {
 	line-height: 50px;
 	min-height: 100px;
-	margin: 0 75px;
+	border-left:75px rgba(0,0,0,0) solid;
+	border-right:75px rgba(0,0,0,0) solid;
+	background:none;
+	box-shadow:none;
+	/*margin: 0 75px;*/
 	position: absolute;
 	vertical-align: middle;
-	visibility: visible;
+	visibility:hidden;
 	width: calc(100% - 150px);
 }
 #scrollme {
 	background-color:#0FF;
 	position:absolute;
 	width:100%;
-	top:0;
+	/*top:0;*/
 	visibility:hidden;
+	height:0;
 }
 .scrollme_content {
 	background: #999;
@@ -184,7 +231,6 @@ margin-left: -16px;
 	height: 50px;
 	position: relative;
 	visibility: visible;
-	width: 100px;
 	text-align: center;
 	vertical-align: middle;
 	line-height: 50px;
@@ -196,10 +242,8 @@ margin-left: -16px;
 	background-color:#999;
 	position:fixed;
 	display: inline-block;
-	height: 50px;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 50px;
 	color:#fff;
 	font-size:18px;
 	cursor:pointer;
@@ -209,6 +253,115 @@ margin-left: -16px;
 	float:right;
     position: absolute;
     right: 24px;
+}
+
+#content {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0px;
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+@media all and (max-width: 1024px) {
+.scrollme_content,
+#titleme,
+#switchme {
+	font-size:24px;
+}
+body {
+	font-size:20px;
+}
+#titleme span {
+	display:none;
+}
+#bottomme {
+	width: calc(100% - 50px);
+	border-left:25px rgba(0,0,0,0) solid;
+	border-right:25px rgba(0,0,0,0) solid;
+	visibility:hidden;
+	/*margin: 0 25px;*/
+	line-height: 40px;
+}
+#arrow_Canvas {
+	opacity: 0;
+}
+.Code_sehen,
+.view_code {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+  height: calc(100% - 275px) !important;
+  padding: 75px 0 200px 25px;
+  width: calc(100% - 25px) !important;
+}
+
+.Code_sehen div,
+.view_code div {
+	display:none;
+}
+
+
+.Arbeiten,
+.jobs {
+	background:
+		url("../images/bg_job_abo.jpg") no-repeat scroll 25px 100px,
+		url("../images/bg_job_gua.jpg") no-repeat scroll calc(100% - 25px) 100px,
+		
+		url("../images/bg_job_bod.jpg") no-repeat scroll 25px calc(50% + 37.5px),
+		url("../images/bg_job_zae.jpg") no-repeat scroll calc(100% - 25px) calc(50% + 37.5px),
+		
+		url("../images/bg_job_sil.jpg") no-repeat scroll 25px calc(100% - 25px),
+		url("../images/bg_job_vie.jpg") no-repeat scroll calc(100% - 25px) calc(100% - 25px)
+		;
+		
+	background-size: calc(50% - 30px) auto;
+	
+	/*border:#f00 4px solid;*/
+
+}
+
+.andere_Objekte,
+.other_objects {
+	background:
+		url("http://www.abotsi.com/2/big/4.jpg") no-repeat scroll 25px 100px,
+		url("http://www.abotsi.com/2/big/12.jpg") no-repeat scroll calc(100% - 25px) 100px,
+		
+		url("http://www.abotsi.com/2/big/6.jpg") no-repeat scroll 25px calc(50% + 37.5px),
+		url("http://www.abotsi.com/2/big/24.jpg") no-repeat scroll calc(100% - 25px) calc(50% + 37.5px),
+		
+		url("http://www.abotsi.com/2/big/5.jpg") no-repeat scroll 25px calc(100% - 25px),
+		url("http://www.abotsi.com/2/big/16.jpg") no-repeat scroll calc(100% - 25px) calc(100% - 25px)
+		;
+
+	background-size: calc(50% - 30px) auto;
+
+}
+
+.intro,
+.Irritationen,
+.irritations {
+	opacity: 0.4;
+    background-attachment: scroll;
+}
+
+.über_mich,
+.about_me {
+    opacity: 0.2;
+    background-attachment: scroll;
+}
+
+.Kontakt,
+.contact {
+    opacity: 1;
+    background-attachment: scroll;
+}
+#switchme {
+	line-height: 75px;
+	max-width:inherit;
+}
+
 }
 #cv_table {
 	border: 0 none;
@@ -228,11 +381,11 @@ margin-left: -16px;
 	box-shadow:0px 75px 36px 111px  rgba(255, 255, 255, 0.5);
 }
 #cv_table td:nth-child(1) {
-	width:33%;
+	width:20%;
 	vertical-align:top;
 }
 #cv_table td:nth-child(2) {
-	width:66%;
+	width:80%;
 	text-align:right;
 }
 

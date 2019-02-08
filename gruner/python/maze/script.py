@@ -1,4 +1,4 @@
-print('hello felix, hallo bis17')
+print('hello felix')
 
 
 def build_maze(m, n, swag):

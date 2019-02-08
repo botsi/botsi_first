@@ -66,7 +66,7 @@ def new_route(start_point, end_point):
     start_point, end_point = set_start_and_end(start_point, end_point)
     print('from: ', start_point)
     print('to: ', end_point)
-    get_route(start_point, end_point)
+    print(get_route(start_point, end_point))
 
 
 def get_route(start_point, end_point):
@@ -80,7 +80,11 @@ def get_route(start_point, end_point):
             if route:
                 routes.append(route)
 
-    print(routes)
+    # print(routes)
+    shortest_route = min(routes, key=len)
+
+    return shortest_route
 
 
 new_route(None, None)
+# print(get_route('Canada Place', 'Burnaby Lake'))

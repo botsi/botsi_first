@@ -12,7 +12,16 @@ def build_maze(m, n, swag):
 
 
 def print_maze(grid):
-    print(build_maze(5, 10, grid))
+    for row in build_maze(6, 6, grid):
+        printable_row = ''
+        for cell in row:
+            if cell == 'wall':
+                char = '|'
+            else:
+                char = ' '
+            printable_row += char
+        print(printable_row)
+    # print(build_maze(5, 10, grid))
 
 
 print_maze(None)

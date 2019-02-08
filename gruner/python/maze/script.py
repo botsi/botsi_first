@@ -11,4 +11,8 @@ def build_maze(m, n, swag):
     return grid
 
 
-print(build_maze(5, 10, None))
+def print_maze(grid):
+    print(build_maze(5, 10, grid))
+
+
+print_maze(None)

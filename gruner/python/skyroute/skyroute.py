@@ -66,6 +66,7 @@ def new_route(start_point, end_point):
     start_point, end_point = set_start_and_end(start_point, end_point)
     print('from: ', start_point)
     print('to: ', end_point)
+    get_route(start_point, end_point)
 
 
 def get_route(start_point, end_point):
@@ -73,10 +74,13 @@ def get_route(start_point, end_point):
     end_stations = vc_landmarks[end_point]
     routes = []
 
-    """
     for start_station in start_stations:
-      for end_station in end_stations:
-          """
+        for end_station in end_stations:
+            route = bfs(vc_metro, start_station, end_station)
+            if route:
+                routes.append(route)
+
+    print(routes)
 
 
 new_route(None, None)

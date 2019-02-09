@@ -1,3 +1,5 @@
+from random import randint
+
 print('hello felix')
 
 
@@ -12,7 +14,7 @@ def build_maze(m, n, swag):
 
 
 def print_maze(grid):
-    for row in build_maze(6, 6, grid):
+    for row in build_maze(5, 10, grid):
         printable_row = ''
         for cell in row:
             if cell == 'wall':
@@ -25,3 +27,6 @@ def print_maze(grid):
 
 
 print_maze(None)
+
+"""
+"""

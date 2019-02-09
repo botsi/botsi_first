@@ -61,6 +61,12 @@ def get_end():
         get_end()
 
 
+def show_landmarks():
+    see_landmarks = input("Would you like to see the list of landmarks again? Enter y/n: ")
+    if see_landmarks == 'y':
+        print("We'll help you find the shortest route between the following Vancouver landmarks:\n" + landmark_string)
+
+
 def new_route(start_point, end_point):
     start_point, end_point = set_start_and_end(start_point, end_point)
     print('from: ', start_point)
@@ -72,6 +78,7 @@ def new_route(start_point, end_point):
     again = input("Would you like to see another route? Enter y/n: ")
     if again == 'y':
         print('yess')
+        show_landmarks()
         new_route(start_point, end_point)
     else:
         print('no thanks')

@@ -11,20 +11,28 @@ for letter, landmark in landmark_choices.items():
     landmark_string += "{0} - {1}\n".format(letter, landmark)
 
 
-stations_under_construction = []
+stations_under_construction = [set(['Kocherpark', 'Eigerplatz'])]
 
 
 def get_active_stations():
     updated_metro = be_metro
     for station_under_construction in stations_under_construction:
         for current_station in station_under_construction:
-            print('blah')
+            print(current_station)
+    """
+            if current_station != station_under_construction:
+                updated_metro[current_station] -= set(stations_under_construction)
+            for value_name in current_station.items():
+                print('blah')
+                #print('key_name: ', key_name)
+                print(value_name)
+                print('blah')
+    """
 
 
 def greet():
+    get_active_stations()
     print('Hi there and welcome to SkyRoute!')
-    u = 'idzie wąż wąską dróżką'
-    print(u)
     print("We'll help you find the shortest route between the following Vancouver landmarks:\n" + landmark_string)
 
 

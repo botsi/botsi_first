@@ -2,5 +2,7 @@
 be_landmarks = {
     'Computer Schule Bern': set(['Eigerplatz', 'Hasler']),
     'Bahnhof Weissenbühl': set(['Beaumont']),
-    'Hirschengraben': set(['Kocherpark', 'Hirschengraben'])
+    'Hirschengraben': set(['Kocherpark', 'Hirschengraben']),
+    'Radio Studio Bern': set(['Monbijou']),
+    'BEA Expo': set(['Guisanplatz Expo'])
 }

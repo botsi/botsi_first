@@ -13,11 +13,12 @@ for letter, landmark in landmark_choices.items():
 def greet():
     print('Hi there and welcome to SkyRoute!')
     print("We'll help you find the shortest route between the following Vancouver landmarks:\n" + landmark_string)
-    set_start_and_end(None, None)
+    # set_start_and_end(None, None)
 
 
 def skyroute():
     greet()
+    new_route(None, None)
 
 
 def set_start_and_end(start_point, end_point):
@@ -60,8 +61,6 @@ def get_end():
         get_end()
 
 
-# skyroute()
-
 def new_route(start_point, end_point):
     start_point, end_point = set_start_and_end(start_point, end_point)
     print('from: ', start_point)
@@ -70,6 +69,12 @@ def new_route(start_point, end_point):
     shortest_route_string = '\n'.join(shortest_route)
     print('my answer: ')
     print("The shortest metro route from {0} to {1} is:\n{2}".format(start_point, end_point, shortest_route_string))
+    again = input("Would you like to see another route? Enter y/n: ")
+    if again == 'y':
+        print('yess')
+        new_route(start_point, end_point)
+    else:
+        print('no thanks')
 
 
 def get_route(start_point, end_point):
@@ -89,5 +94,6 @@ def get_route(start_point, end_point):
     return shortest_route
 
 
-new_route(None, None)
+skyroute()
+
 # print(get_route('Canada Place', 'Burnaby Lake'))

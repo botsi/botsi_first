@@ -10,15 +10,23 @@ for letter, landmark in landmark_choices.items():
     landmark_string += "{0} - {1}\n".format(letter, landmark)
 
 
+stations_under_construction = []
+
+
 def greet():
     print('Hi there and welcome to SkyRoute!')
     print("We'll help you find the shortest route between the following Vancouver landmarks:\n" + landmark_string)
-    # set_start_and_end(None, None)
+    # set_start_and_end(None, None)print "Thanks for using SkyRoute!"
+
+
+def goodbye():
+    print('Thanks for using SkyRoute!')
 
 
 def skyroute():
     greet()
     new_route(None, None)
+    goodbye()
 
 
 def set_start_and_end(start_point, end_point):

@@ -1,28 +1,6 @@
+# -*- coding: utf-8 -*-
 landmark_choices = {
     'a': 'Computer Schule Bern',
-    'b': 'Beaumont',
-    'c': 'City West',
-    'd': 'Vancouver Lookout',
-    'e': 'Canada Place',
-    'f': 'Cathedral of Our Lady of the Holy Rosary',
-    'g': 'Library Square',
-    'h': 'B.C. Place Stadium',
-    'i': 'Lions Gate Bridge',
-    'j': 'Gastown Steam Clock',
-    'k': 'Waterfront Station',
-    'l': 'Granville Street',
-    'm': 'Pacific Central Station',
-    'n': 'Prospect Point Lighthouse',
-    'o': 'Queen Elizabeth Theatre',
-    'p': 'Stanley Park',
-    'q': 'Granville Island Public Market',
-    'r': 'Kitsilano Beach',
-    's': 'Dr. Sun Yat-Sen Classical Chinese Garden',
-    't': 'Museum of Vancouver',
-    'u': 'Science World',
-    'v': 'Robson Square',
-    'w': 'Samson V Maritime Museum',
-    'x': 'Burnaby Lake',
-    'y': 'Nikkei National Museum & Cultural Centre',
-    'z': 'Central Park'
+    'b': 'Bahnhof Weissenbühl',
+    'c': 'Hirschengraben'
 }

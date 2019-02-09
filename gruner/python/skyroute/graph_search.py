@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def bfs(graph, start_vertex, target_value):
     path = [start_vertex]
     vertex_and_path = [start_vertex, path]
@@ -12,7 +13,6 @@ def bfs(graph, start_vertex, target_value):
             if neighbor not in visited:
                 if neighbor == target_value:
                     return path + [neighbor]
-
                 else:
                     bfs_queue.append([neighbor, path + [neighbor]])
 

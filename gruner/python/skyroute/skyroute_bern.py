@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 from graph_search import bfs, dfs
-from vc_metro import vc_metro
-from vc_landmarks import vc_landmarks
-from landmark_choices import landmark_choices
+from be_metro import be_metro
+from be_landmarks import be_landmarks
+from landmark_choices_bern import landmark_choices
 
 # Build your program below:
 
@@ -14,7 +15,7 @@ stations_under_construction = []
 
 
 def get_active_stations():
-    updated_metro = vc_metro
+    updated_metro = be_metro
     for station_under_construction in stations_under_construction:
         for current_station in station_under_construction:
             print('blah')
@@ -22,6 +23,8 @@ def get_active_stations():
 
 def greet():
     print('Hi there and welcome to SkyRoute!')
+    u = 'idzie wąż wąską dróżką'
+    print(u)
     print("We'll help you find the shortest route between the following Vancouver landmarks:\n" + landmark_string)
 
 
@@ -101,13 +104,13 @@ def new_route(start_point, end_point):
 
 
 def get_route(start_point, end_point):
-    start_stations = vc_landmarks[start_point]
-    end_stations = vc_landmarks[end_point]
+    start_stations = be_landmarks[start_point]
+    end_stations = be_landmarks[end_point]
     routes = []
 
     for start_station in start_stations:
         for end_station in end_stations:
-            route = bfs(vc_metro, start_station, end_station)
+            route = bfs(be_metro, start_station, end_station)
             if route:
                 routes.append(route)
 

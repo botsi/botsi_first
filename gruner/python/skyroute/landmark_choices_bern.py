@@ -4,5 +4,8 @@ landmark_choices = {
     'b': 'Bahnhof Weissenbühl',
     'c': 'Hirschengraben',
     'd': 'Radio Studio Bern',
-    'e': 'BEA Expo'
+    'e': 'BEA Expo',
+    'f': 'Köniz',
+    'g': 'Ostermundigen',
+    'h': 'Löscher'
 }

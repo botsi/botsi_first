@@ -7,7 +7,16 @@ be_metro = {
     'Kocherpark': set(['Hirschengraben', 'Kaufmannischer Verband', 'Hasler']),
     'Hirschengraben': set(['Bern Bahnhof', 'Monbijou', 'Kocherpark']),
     'Bern Bahnhof': set(['Hirschengraben', 'Monbijou', 'Bärenplatz']),
-    'Weissensteinstrasse': set(['Eigerplatz']),
+    'Köniz Schliern': set(['Eichmatt']),
+    'Eichmatt': set(['Sandwürfi Friedhof', 'Köniz Schliern']),
+    'Sandwürfi Friedhof': set(['Köniz Schloss', 'Eichmatt']),
+    'Köniz Schloss': set(['Köniz Zentrum', 'Sandwürfi Friedhof']),
+    'Köniz Zentrum': set(['Brühlplatz', 'Köniz Schloss']),
+    'Brühlplatz': set(['Liebefeld Park', 'Köniz Zentrum']),
+    'Liebefeld Park': set(['Hessstrasse', 'Brühlplatz']),
+    'Hessstrasse': set(['Dübystrasse', 'Liebefeld Park']),
+    'Dübystrasse': set(['Weissensteinstrasse', 'Hessstrasse']),
+    'Weissensteinstrasse': set(['Eigerplatz', 'Dübystrasse']),
     'Wabern': set(['Eichholz']),
     'Eichholz': set(['Gurtenbahn', 'Wabern']),
     'Gurtenbahn': set(['Sandrain', 'Eichholz']),
@@ -25,12 +34,24 @@ be_metro = {
     'Bärenplatz': set(['Bern Bahnhof', 'Zytglogge']),
     'Zytglogge': set(['Bärenplatz', 'Kursaal']),
     'Kursaal': set(['Zytglogge', 'Viktoriaplatz']),
-    'Viktoriaplatz': set(['Kursaal', 'Spitalacker']),
+    'Viktoriaplatz': set(['Kursaal', 'Salem', 'Spitalacker']),
     'Spitalacker': set(['Viktoriaplatz', 'Breitenrain']),
     'Breitenrain': set(['Spitalacker', 'Parkstrasse']),
     'Parkstrasse': set(['Breitenrain', 'Guisanplatz Expo']),
-    'Guisanplatz Expo': set(['Parkstrasse'])
+    'Guisanplatz Expo': set(['Parkstrasse', 'Wankdorf Center']),
+    'Wankdorf Center': set(['Wankdorfplatz', 'Guisanplatz Expo']),
+    'Wankdorfplatz': set(['Wankdorf Center', 'Wankdorf Bahnhof']),
+    'Wankdorf Bahnhof': set(['Wankdorfplatz']),
+    'Salem': set(['Viktoriaplatz', 'Schönburg']),
+    'Schönburg': set(['Salem', 'Rosengarten']),
+    'Rosengarten': set(['Schönburg', 'Galgenfeld']),
+    'Galgenfeld': set(['Rosengarten', 'Schosshaldenfriedhof']),
+    'Schosshaldenfriedhof': set(['Galgenfeld', 'Waldeck']),
+    'Waldeck': set(['Schosshaldenfriedhof', 'Ostermundigen Bahnhof']),
+    'Ostermundigen Bahnhof': set(['Waldeck', 'Zollgasse']),
+    'Zollgasse': set(['Ostermundigen Bahnhof'])
 }
 """
-    Wankdorf CenterWankdorfplatzWankdorf Bahnhof
+    WegmühlegässliSportplatzwegOberfeldOstermundigen Rüti
+
 """

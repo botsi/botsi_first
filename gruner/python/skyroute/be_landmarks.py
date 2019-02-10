@@ -4,5 +4,8 @@ be_landmarks = {
     'Bahnhof Weissenbühl': set(['Beaumont']),
     'Hirschengraben': set(['Kocherpark', 'Hirschengraben']),
     'Radio Studio Bern': set(['Monbijou']),
-    'BEA Expo': set(['Guisanplatz Expo'])
+    'BEA Expo': set(['Guisanplatz Expo']),
+    'Köniz': set(['Köniz Zentrum']),
+    'Löscher': set(['Viktoriaplatz']),
+    'Ostermundigen': set(['Ostermundigen Bahnhof'])
 }

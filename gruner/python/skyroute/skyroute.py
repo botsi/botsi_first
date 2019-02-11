@@ -10,17 +10,29 @@ for letter, landmark in landmark_choices.items():
     landmark_string += "{0} - {1}\n".format(letter, landmark)
 
 
-stations_under_construction = []
+stations_under_construction = ['Aberdeen']
 
 
 def get_active_stations():
     updated_metro = vc_metro
     for station_under_construction in stations_under_construction:
-        for current_station in station_under_construction:
-            print('blah')
+        print(station_under_construction)
+        for current_station in updated_metro:
+            print('current_station: ', current_station)
+            if current_station != station_under_construction:
+                temp = list(updated_metro[current_station])
+                for key_name in updated_metro[current_station]:
+                    if key_name == station_under_construction and station_under_construction in temp:
+                        temp.remove(station_under_construction)
+                        print('new list: ', temp)
+                        updated_metro[current_station] = set(temp)
+            else:
+                updated_metro[current_station] = {}
+    return updated_metro
 
 
 def greet():
+    get_active_stations()
     print('Hi there and welcome to SkyRoute!')
     print("We'll help you find the shortest route between the following Vancouver landmarks:\n" + landmark_string)
 
@@ -107,16 +119,19 @@ def get_route(start_point, end_point):
 
     for start_station in start_stations:
         for end_station in end_stations:
-            route = bfs(vc_metro, start_station, end_station)
+            metro_system = get_active_stations() if len(stations_under_construction) > 0 else vc_metro
+            if len(stations_under_construction) > 0:
+                possible_route = dfs(metro_system, start_station, end_station)
+                if possible_route is None:
+                    return possible_route
+
+            route = bfs(metro_system, start_station, end_station)
             if route:
                 routes.append(route)
 
-    # print(routes)
     shortest_route = min(routes, key=len)
 
     return shortest_route
 
 
 skyroute()
-
-# print(get_route('Canada Place', 'Burnaby Lake'))

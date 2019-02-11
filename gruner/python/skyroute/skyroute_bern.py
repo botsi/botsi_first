@@ -10,16 +10,19 @@ for letter, landmark in landmark_choices.items():
     landmark_string += "{0} - {1}\n".format(letter, landmark)
 
 
-stations_under_construction = ['Hasler']
+stations_under_construction = ['Hasler', 'Kocherpark']
 
 
 def get_active_stations():
     updated_metro = be_metro
     for station_under_construction in stations_under_construction:
-        print(station_under_construction)
         for current_station in updated_metro:
             if current_station != station_under_construction:
-                updated_metro[current_station] -= set(stations_under_construction)
+                temp = list(updated_metro[current_station])
+                for key_name in updated_metro[current_station]:
+                    if key_name == station_under_construction and station_under_construction in temp:
+                        temp.remove(station_under_construction)
+                        updated_metro[current_station] = set(temp)
             else:
                 updated_metro[current_station] = {}
     return updated_metro
@@ -89,8 +92,6 @@ def show_landmarks():
 
 def new_route(start_point, end_point):
     start_point, end_point = set_start_and_end(start_point, end_point)
-    print('from: ', start_point)
-    print('to: ', end_point)
     shortest_route = get_route(start_point, end_point)
     if shortest_route:
         shortest_route_string = '\n'.join(shortest_route)
@@ -99,11 +100,8 @@ def new_route(start_point, end_point):
         print("unfortunately, there is currently no path between {0} and {1} due to maintenance.".format(start_point, end_point))
     again = input("Would you like to see another route? Enter y/n: ")
     if again == 'y':
-        print('yess')
         show_landmarks()
         new_route(start_point, end_point)
-    else:
-        print('no thanks')
 
 
 def get_route(start_point, end_point):

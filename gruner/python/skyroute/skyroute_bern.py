@@ -10,7 +10,7 @@ for letter, landmark in landmark_choices.items():
     landmark_string += "{0} - {1}\n".format(letter, landmark)
 
 
-stations_under_construction = ['Hasler', 'Kocherpark']
+stations_under_construction = ['Monbijou']
 
 
 def get_active_stations():
@@ -25,6 +25,7 @@ def get_active_stations():
                         updated_metro[current_station] = set(temp)
             else:
                 updated_metro[current_station] = {}
+    print(updated_metro)
     return updated_metro
 
 
@@ -112,11 +113,12 @@ def get_route(start_point, end_point):
     for start_station in start_stations:
         for end_station in end_stations:
             metro_system = get_active_stations() if len(stations_under_construction) > 0 else be_metro
+            """
             if len(stations_under_construction) > 0:
                 possible_route = dfs(metro_system, start_station, end_station)
                 if possible_route is None:
                     return possible_route
-
+            """
             route = bfs(metro_system, start_station, end_station)
             if route:
                 routes.append(route)

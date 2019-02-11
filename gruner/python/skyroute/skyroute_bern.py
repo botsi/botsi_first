@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from graph_search import bfs, dfs
+from graph_search import bfs
 from be_metro import be_metro
 from be_landmarks import be_landmarks
 from landmark_choices_bern import landmark_choices
@@ -10,7 +10,7 @@ for letter, landmark in landmark_choices.items():
     landmark_string += "{0} - {1}\n".format(letter, landmark)
 
 
-stations_under_construction = ['Monbijou']
+stations_under_construction = ['Hasler', 'Kocherpark']
 
 
 def get_active_stations():

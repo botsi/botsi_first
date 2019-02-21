@@ -1,0 +1,422 @@
+{
+  "Weissenbühl": {
+    "imageName": "weissenbuhl"
+  },
+  "Beaumont": {},
+  "Eigerplatz": {
+    "imageName": "eigerplatz",
+    "latlon": [46.941073, 7.431075]
+  },
+  "Hasler": {
+    "latlon": [46.943695, 7.432207]
+  },
+  "Kocherpark": {
+    "imageName": "kocherpark",
+    "latlon": [46.945917, 7.433582]
+  },
+  "Holligen": {
+    "latlon": [46.946255, 7.420616]
+  },
+  "Inselspital": {
+    "imageName": "inselspital",
+    "latlon": [46.947368, 7.425998]
+  },
+  "Inselplatz": {
+    "imageName": "inselplatz",
+    "latlon": [46.948037, 7.428480]
+  },
+  "Hirschengraben": {
+    "imageName": "hirschengraben",
+    "latlon": [46.947030, 7.437545]
+  },
+  "Bern Bahnhof": {
+    "imageName": "bernbahnhof",
+    "latlon": [46.948110, 7.440307]
+  },
+  "Köniz Schliern": {},
+  "Eichmatt": {},
+  "Sandwürfi Friedhof": {},
+  "Köniz Schloss": {},
+  "Köniz Zentrum": {
+    "imageName": "konizzentrum",
+    "latlon": [46.923092, 7.414553]
+  },
+  "Brühlplatz": {
+    "latlon": [46.926033, 7.417020]
+  },
+  "Liebefeld Park": {
+    "imageName": "liebefeldpark",
+    "latlon": [46.930910, 7.420629]
+  },
+  "Hessstrasse": {
+    "imageName": "hessstrasse",
+    "latlon": [46.932548, 7.422348]
+  },
+  "Dübystrasse": {
+    "latlon": [46.936238, 7.425175]
+  },
+  "Weissensteinstrasse": {
+    "latlon": [46.939133, 7.428479]
+  },
+  "Wabern": {
+    "latlon": [46.928017, 7.452816]
+  },
+  "Eichholz": {
+    "latlon": [46.928865, 7.451433]
+  },
+  "Gurtenbahn": {
+    "latlon": [46.930097, 7.448024]
+  },
+  "Sandrain": {
+    "imageName": "sandrain",
+    "latlon": [46.931714, 7.445096]
+  },
+  "Schönegg": {
+    "latlon": [46.934027, 7.439730]
+  },
+  "Wander": {
+    "latlon": [46.936946, 7.436464]
+  },
+  "Sulgenau": {
+    "imageName": "sulgenau",
+    "latlon": [46.940006, 7.436010]
+  },
+  "Monbijou": {
+    "imageName": "monbijou",
+    "latlon": [46.943688, 7.435885]
+  },
+  "Fischermätteli": {
+    "imageName": "fischermatteli",
+    "latlon": [46.940748, 7.418705]
+  },
+  "Munzinger": {
+    "latlon": [46.940186, 7.421951]
+  },
+  "Pestalozzi": {
+    "latlon": [46.940233, 7.423663]
+  },
+  "Cäcilienstrasse": {
+    "imageName": "cacilienstrasse",
+    "latlon": [46.941635, 7.425630]
+  },
+  "Brunnhof": {
+    "imageName": "brunnhof",
+    "latlon": [46.944640, 7.427193]
+  },
+  "Kaufmännischer Verband": {
+    "imageName": "kaufmannischerverband",
+    "latlon": [46.945673, 7.427640]
+  },
+  "Bärenplatz": {
+    "imageName": "barenplatz",
+    "latlon": [46.948160, 7.443135]
+  },
+  "Zytglogge": {
+    "imageName": "zytglogge",
+    "latlon": [46.947983, 7.447476]
+  },
+  "Kursaal": {
+    "latlon": [46.952883, 7.449584]
+  },
+  "Viktoriaplatz": {
+    "imageName": "viktoriaplatz",
+    "latlon": [46.954784, 7.451107]
+  },
+  "Spitalacker": {
+    "imageName": "spitalacker",
+    "latlon": [46.956609, 7.452154]
+  },
+  "Breitenrain": {
+    "imageName": "breitenrain",
+    "latlon": [46.958874, 7.454916]
+  },
+  "Parkstrasse": {
+    "imageName": "parkstrasse",
+    "latlon": [46.959604, 7.458893]
+  },
+  "Guisanplatz Expo": {
+    "imageName": "guisanplatzexpo",
+    "latlon": [46.959234, 7.464128]
+  },
+  "Wankdorf Center": {
+    "imageName": "wankdorfcenter",
+    "latlon": [46.961991, 7.465893]
+  },
+  "Wankdorfplatz": {
+    "imageName": "wankdorfplatz",
+    "latlon": [46.964444, 7.467767]
+  },
+  "Wankdorf Bahnhof": {
+    "imageName": "wankdorfbahnhof",
+    "latlon": [46.966829, 7.464190]
+  },
+  "Salem": {
+    "latlon": [46.953771, 7.454872]
+  },
+  "Schönburg": {
+    "imageName": "schonburg",
+    "latlon": [46.953576, 7.457786]
+  },
+  "Rosengarten": {
+    "imageName": "rosengarten",
+    "latlon": [46.951985, 7.461392]
+  },
+  "Galgenfeld": {
+    "latlon": [46.952540, 7.467038]
+  },
+  "Schosshaldenfriedhof": {
+    "latlon": [46.953720, 7.473079]
+  },
+  "Waldeck": {
+    "latlon": [46.954381, 7.477191]
+  },
+  "Ostermundigen Bahnhof": {
+    "imageName": "ostermundigenbahnhof",
+    "latlon": [46.956189, 7.481262]
+  },
+  "Zollgasse": {
+    "latlon": [46.957995, 7.487920]
+  },
+  "Wegmühlegässli": {
+    "latlon": [46.957937, 7.493417]
+  },
+  "Sportplatzweg": {
+    "latlon": [46.959328, 7.498188]
+  },
+  "Oberfeld": {
+    "latlon": [46.958170, 7.500926]
+  },
+  "Ostermundigen Rüti": {
+    "latlon": [46.956275, 7.505704]
+  },
+  "Bollwerk": {
+    "imageName": "bollwerk",
+    "latlon": [46.951590, 7.440972]
+  },
+  "Henkerbrünnli": {
+    "imageName": "henkerbrunnli",
+    "latlon": [46.953789, 7.439073]
+  },
+  "Bierhübeli": {
+    "latlon": [46.956754, 7.437735]
+  },
+  "Engeried": {
+    "latlon": [46.958708, 7.436097]
+  },
+  "Brückfeld": {
+    "latlon": [46.960588, 7.434318]
+  },
+  "Neufeld P+R": {
+    "latlon": [46.962923, 7.432041]
+  },
+  "Helvetiaplatz": {
+    "imageName": "helvetiaplatz",
+    "latlon": [46.944104, 7.449018]
+  },
+  "Brunnadernstrasse": {
+    "imageName": "brunnadernstrasse",
+    "latlon": [46.941302, 7.464146]
+  },
+  "Egghölzli": {
+    "imageName": "eggholzli",
+    "latlon": [46.937044, 7.476164]
+  },
+  "Muri": {
+    "imageName": "muri",
+    "latlon": [46.931417, 7.486140]
+  },
+  "Seidenberg": {
+    "latlon": [46.932892, 7.492185]
+  },
+  "Melchenbühl": {
+    "latlon": [46.935268, 7.498397]
+  },
+  "Gümligen Bahnhof": {
+    "latlon": [46.934309, 7.505682]
+  },
+  "Hofgut": {
+    "imageName": "hofgut",
+    "latlon": [46.932756, 7.510872]
+  },
+  "Siloah": {
+    "imageName": "siloah",
+    "latlon": [46.932652, 7.516460]
+  },
+  "Scheyenholz": {
+    "latlon": [46.930812, 7.526175]
+  },
+  "Rüfenacht": {
+    "latlon": [46.929845, 7.530546]
+  },
+  "Langenloh": {
+    "latlon": [46.927482, 7.543619]
+  },
+  "Worb Dorf": {
+    "imageName": "worbdorf",
+    "latlon": [46.929871, 7.562921]
+  },
+  "Worblaufen": {
+    "imageName": "worblaufen",
+    "latlon": [46.979561, 7.457861]
+  },
+  "Papiermühle": {
+    "imageName": "papiermuhle",
+    "latlon": [46.974211, 7.476603]
+  },
+  "Ittigen bei Bern": {
+    "imageName": "ittigenbeibern",
+    "latlon": [46.973349, 7.484194]
+  },
+  "Bolligen": {
+    "imageName": "bolligen",
+    "latlon": [46.970023, 7.496757]
+  },
+  "Deisswil": {
+    "latlon": [46.957649, 7.513762]
+  },
+  "Stettlen": {
+    "latlon": [46.956811, 7.523787]
+  },
+  "Boll-Utzigen": {
+    "imageName": "bollutzigen",
+    "latlon": [46.953648, 7.547381]
+  },
+  "Vechigen": {
+    "latlon": [46.946615, 7.556375]
+  },
+  "Worbboden": {
+    "latlon": [46.934070, 7.559521]
+  },
+  "Kappelisacker": {},
+  "Aespliz": {},
+  "Pulverstutz": {
+    "latlon": [46.973574, 7.473290]
+  },
+  "Eyfeld": {
+    "imageName": "eyfeld",
+    "latlon": [46.971377, 7.471853]
+  },
+  "Schermenwaldstrasse": {
+    "latlon": [46.968248, 7.470705]
+  },
+  "Wankdorfbrücke": {
+    "latlon": [46.966147, 7.469064]
+  },
+  "Kasernenstrasse": {
+    "imageName": "kasernenstrasse",
+    "latlon": [46.954981, 7.460548]
+  },
+  "Schosshalde": {
+    "latlon": [46.947398, 7.466189]
+  },
+  "Ostring": {
+    "imageName": "ostring",
+    "latlon": [46.945018, 7.471812]
+  },
+  "Burgernziel": {
+    "imageName": "burgernziel",
+    "latlon": [46.942000, 7.466927]
+  },
+  "Weltpostverein": {
+    "imageName": "weltpostverein",
+    "latlon": [46.938984, 7.471626]
+  },
+  "Villette": {
+    "imageName": "villette",
+    "latlon": [46.934068, 7.482372]
+  },
+  "Schanzenstrasse": {
+    "imageName": "schanzenstrasse",
+    "latlon": [46.947876, 7.437223]
+  },
+  "Universität": {
+    "imageName": "universitat",
+    "latlon": [46.950947, 7.435525]
+  },
+  "Mittelstrasse": {
+    "latlon": [46.953139, 7.432593]
+  },
+  "Unitobler": {
+    "latlon": [46.954898, 7.429746]
+  },
+  "Länggasse": {
+    "latlon": [46.955915, 7.426282]
+  },
+  "Rathaus": {
+    "latlon": [46.948048, 7.452563]
+  },
+  "Nydegg": {
+    "latlon": [46.948629, 7.456219]
+  },
+  "Bärenpark": {
+    "latlon": [46.948375, 7.459616]
+  },
+  "Liebegg": {
+    "latlon": [46.944657, 7.459063]
+  },
+  "Seminar": {
+    "latlon": [46.944749, 7.461249]
+  },
+  "Tavelweg": {
+    "latlon": [46.946336, 7.464259]
+  },
+  "Bitziusstrasse": {
+    "imageName": "bitziusstrasse",
+    "latlon": [46.949366, 7.469244]
+  },
+  "Zentrum Paul Klee": {
+    "imageName": "zentrumpaulklee",
+    "latlon": [46.950795, 7.472914]
+  },
+  "Loryplatz": {
+    "imageName": "loryplatz",
+    "latlon": [46.944590, 7.421079]
+  },
+  "Schlossmatte": {
+    "latlon": [46.944167, 7.414950]
+  },
+  "Steigerhubel": {
+    "latlon": [46.943941, 7.411553]
+  },
+  "Europaplatz": {
+    "imageName": "europaplatz",
+    "latlon": [46.943345, 7.406891]
+  },
+  "Unterführung": {
+    "latlon": [46.942199, 7.400657]
+  },
+  "Stöckacker": {
+    "imageName": "stockacker",
+    "latlon": [46.944679, 7.399014]
+  },
+  "Bethlehem Säge": {
+    "imageName": "bethlehemsage",
+    "latlon": [46.947424, 7.395061]
+  },
+  "Bethlehem Kirche": {
+    "latlon": [46.949158, 7.393131]
+  },
+  "Tscharnergut": {
+    "latlon": [46.948913, 7.388277]
+  },
+  "Holenacker": {
+    "latlon": [46.948701, 7.382609]
+  },
+  "Gäbelbach": {
+    "latlon": [46.947780, 7.377510]
+  },
+  "Ramuzstrasse": {
+    "latlon": [46.946371, 7.375046]
+  },
+  "Brünnen Westside": {
+    "imageName": "brunnenwestside",
+    "latlon": [46.944124, 7.375130]
+  },
+  "Stöckacker Bahnhof": {
+    "imageName": "stockackerbahnhof",
+    "latlon": [46.946423, 7.400942]
+  },
+  "Bümpliz Nord": {
+    "latlon": [46.945818, 7.389793]
+  }
+}

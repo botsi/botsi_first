@@ -1,26 +1,221 @@
+@keyframes inout {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #info {
+    font-size: 3vw;
+  }
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  /*
+  background: #496c0c;
+  */
+  background: #0e1625;
+  overflow-x: hidden;
+}
+
+#code_display, #map_display {
+  position: absolute;
+  left: 0;
+  height: auto;
+  min-height: calc(100% - 96px);
+  top: 96px;
+  z-index: 0;
+  display: none;
+}
+
+#map_display {
+  width: 100%;
+  background-color: #023e58;
+}
+
+#map_display #points_display {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+}
+
+#map_display #points_display div.waypoint {
+  background: #db5804;
+  width: .5vw;
+  height: .5vw;
+  border-radius: .25vw;
+  position: fixed;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#map_display #points_display div.waypoint.autohover {
+  -webkit-animation: inout 2s ease-in;
+  animation: inout ease-in 2s 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+#map_display #points_display div.waypoint.autohover,
+#map_display #points_display div.waypoint:hover {
+  overflow: visible;
+  z-index: 3;
+}
+
+#map_display #points_display div label {
+  background: #db5804;
+  color: #fff;
+  position: relative;
+  top: -36px;
+  width: 150px;
+  text-align: center;
+  left: -79px;
+  border-radius: 12px;
+  padding: 8px;
+  display: block;
+  height: 36px;
+  z-index: 3;
+}
+
+#map_display #points_display canvas {
+  position: fixed;
+  border: 0 none;
+}
+
+#code_display p.hoverable {
+  margin: -9px 0;
+  text-decoration: underline;
+}
+
+#code_display {
+  width: calc(100% - 36px);
+  font-family: 'Source Code Pro', monospace;
+  color: #0C0;
+  line-height: 1.4;
+  padding: 0 18px;
+  /*
+  background: #0e1625;
+  opacity: 0.5;
+  background: radial-gradient(circle at 50%, rgba(0, 0, 0, 0) 25%, #0e1625 25%);
+
+  background: radial-gradient(circle at 50%, #0e1625 200px, rgba(0, 0, 0, 0) 200px);
+  */
+  /*
+  background: radial-gradient(circle at 50%, #0C0 200px, #0e1625 200px);
+  background-attachment: fixed;
+  mix-blend-mode: normal;
+  */
+}
+
+#code_display span.hoverable {
+  line-height: 36px;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+#code_display span.hoverable:not(:last-child):after {
+  content: " - ";
+}
+
+#code_display span.hoverable.hidedis:after {
+  visibility: hidden;
+}
+
+/*
+#code_display span.hoverable:hover {
+  box-shadow: 0px 0px 0px 6px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+}
+*/
+#code_display.active, #map_display.active {
+  display: block;
+}
+
+#image_display {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#image_display img {
+  position: fixed;
+  height: 400px;
+  margin: 0 calc(50% - 200px);
+  object-fit: cover;
+  display: none;
+}
+
+#image_display #bordercanvas {
+  /*
+  opacity: 0.5;
+  background: radial-gradient(circle at 50%, rgba(0, 0, 0, 0) 25%, #0e1625 25%);
+*/
+  z-index: 1;
+  position: absolute;
+  display: none;
 }
 
 #content_background {
-  background: #496c0c;
+  background: url('../images/bern.jpg');
   opacity: 1;
-  z-index: 1;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*
+  filter: hue-rotate(190deg);
+*/
+}
+
+#content_background p {
+  opacity: 0.2;
+  font-size: 36px;
+  color: #fff;
+  text-align: center;
+  display: none;
 }
 
 #content {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 72px;
   z-index: 2;
-  overflow: hidden;
+  padding: 12px 18px;
+  background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), #496c0c 20%);
+  background-color: #0e1625;
+  color: #fff;
+  font-size: 24px;
+  line-height: 36px;
 }
 
 #content p,
@@ -41,19 +236,8 @@ body {
   z-index: 1;
 }
 
-#code_display {
-  font-family: 'Special Elite';
-  color: #0C0;
-  line-height: 1.4;
-  background: #000;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
 canvas {
-  border: 1px black solid;
+  border: 0 none;
 }
 
 #textCanvas {
